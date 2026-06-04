@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>feuille d'or</title>
+
+<style>
+body{
+margin:0;
+font-family: Arial;
+background:#fff;
+color:#111;
+}
+
+/* ===== TOP BAR ===== */
+.ticker{
+background:#000;
+color:#fff;
+overflow:hidden;
+white-space:nowrap;
+}
+
+.ticker span{
+display:inline-block;
+padding:10px 0;
+animation:scroll 18s linear infinite;
+}
+
+@keyframes scroll{
+0%{transform:translateX(100%);}
+100%{transform:translateX(-100%);}
+}
+
+/* ===== NAV ===== */
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 50px;
+background:rgba(250,246,240,0.92);
+backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(0,0,0,0.06);
+position:sticky;
+top:0;
+z-index:999;
+}
+
+.logo{
+font-size:20px;
+letter-spacing:3px;
+font-weight:300;
+}
+
+nav a{
+margin:0 10px;
+cursor:pointer;
+text-decoration:none;
+color:#111;
+font-size:13px;
+}
+
+/* ===== PAGE ===== */
+.page{
+display:none;
+padding:50px;
+}
+
+.active{
+display:block;
+}
+
+/* ===== HOME ===== */
+.hero{
+text-align:center;
+padding:160px 20px;
+}
+
+.hero h1{
+font-size:52px;
+letter-spacing:5px;
+font-weight:300;
+}
+
+.hero p{
+color:#666;
+font-style:italic;
+}
+
+/* ===== 4x5 GRID ===== */
+.products{
+display:grid;
+grid-template-columns:repeat(4, 1fr);
+gap:20px;
+}
+
+/* 手机适配 */
+@media(max-width:1000px){
+.products{
+grid-template-columns:repeat(2, 1fr);
+}
+}
+
+@media(max-width:600px){
+.products{
+grid-template-columns:1fr;
+}
+}
+
+.card{
+border:1px solid #eee;
+cursor:pointer;
+transition:0.3s;
+background:#fff;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card-content{
+padding:10px;
+}
+
+/* ===== PRODUCT DETAIL ===== */
+.product-layout{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+}
+
+.product-gallery img{
+width:100%;
+margin-bottom:10px;
+background:#f3f3f3;
+}
+
+/* ===== FORM ===== */
+input, select, textarea{
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border:1px solid #ddd;
+}
+
+button{
+background:black;
+color:white;
+padding:10px;
+border:none;
+cursor:pointer;
+margin-top:10px;
+}
+
+.success{
+color:green;
+display:none;
+}
+
+/* ===== FOOTER ===== */
+footer{
+border-top:1px solid #eee;
+padding:50px;
+font-size:13px;
+color:#666;
+}
+
+footer span{
+cursor:pointer;
+margin-right:10px;
+}
+
+footer a{
+margin-right:10px;
+color:#111;
+text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP -->
+<div class="ticker">
+<span>⚡ New Collection · Free EU Shipping · Limited Edition · Feuille d'Or · ART DES MAINS ·</span>
+</div>
+
+<!-- NAV -->
+<header>
+<div class="logo">feuille d'or</div>
+
+<nav>
+<a onclick="go('home')">Home</a>
+<a onclick="go('shop')">Shop</a>
+<a onclick="go('giftcard')">Gift Card</a>
+<a onclick="go('partner')">Partner Ecosystem</a>
+</nav>
+</header>
+
+<!-- HOME -->
+<div id="home" class="page active">
+<div class="hero">
+<h1>ART DES MAINS</h1>
+<p>Empreinte maîtrisée. Beauté responsable.</p>
+</div>
+</div>
+
+<!-- SHOP (4x5 = 20 PRODUCTS) -->
+<div id="shop" class="page">
+
+<h2>Shop Collection</h2>
+
+<div class="products" id="grid"></div>
+
+</div>
+
+<!-- PRODUCT -->
+<div id="product" class="page">
+
+<div class="product-layout">
+
+<div>
+<div style="height:120px;background:#f3f3f3;margin-bottom:10px;"></div>
+<div style="height:120px;background:#f3f3f3;margin-bottom:10px;"></div>
+<div style="height:120px;background:#f3f3f3;"></div>
+</div>
+
+<div>
+<h2 id="title"></h2>
+<p id="desc"></p>
+
+<h3>Options</h3>
+<select>
+<option>Size S / M / L</option>
+<option>Custom Fit</option>
+</select>
+
+<h3>Included</h3>
+<p>10 nails · glue · kit</p>
+
+<h3>Delivery</h3>
+<p>3–7 days EU</p>
+
+<button>Buy Now</button>
+
+<h3>Reviews</h3>
+<p>⭐️⭐️⭐️⭐️⭐️ Elegant & long lasting</p>
+</div>
+
+</div>
+</div>
+
+<!-- GIFT CARD -->
+<div id="giftcard" class="page">
+<h2>Gift Card</h2>
+<p>Digital gift card available for all collections.</p>
+<button>Buy Gift Card</button>
+</div>
+
+<!-- PARTNER -->
+<div id="partner" class="page">
+<h2>Partner Application</h2>
+
+<input placeholder="Full Name">
+<input placeholder="Email">
+
+<select>
+<option>Creator</option>
+<option>Reseller</option>
+<option>Salon</option>
+<option>Brand Collaboration</option>
+</select>
+
+<textarea placeholder="Your idea..."></textarea>
+
+<button>Submit</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+
+<span onclick="go('shop')">Shop</span>
+<span onclick="go('giftcard')">Gift Card</span>
+<span onclick="go('partner')">Partner</span>
+
+<br><br>
+
+<a href="https://instagram.com/YOUR" target="_blank">Instagram</a>
+<a href="https://tiktok.com/@YOUR" target="_blank">TikTok</a>
+
+</footer>
+
+<script>
+
+function go(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+function openProduct(name){
+go('product');
+document.getElementById('title').innerText = name;
+document.getElementById('desc').innerText = "Luxury press-on nails design.";
+}
+
+/* 20 PRODUCTS */
+const products = [
+"Golden French","Black Minimal","Pearl White","Rose Nude",
+"Chrome Silver","Soft Beige","Milky Pink","Luxury Gold",
+"French Classic","Matte Black","Crystal Shine","Elegant Nude",
+"Soft Glow","Minimal White","Dark Wine","Champagne Gold",
+"Pearl Glow","Silk Pink","Luxury Black","Ivory Cream"
+];
+
+const grid = document.getElementById("grid");
+
+products.forEach(p=>{
+grid.innerHTML += `
+<div class="card" onclick="openProduct('${p}')">
+<img src="https://images.unsplash.com/photo-1604654894610-df63bc536371">
+<div class="card-content">
+<h3>${p}</h3>
+<p>€29</p>
+</div>
+</div>
+`;
+});
+
+</script>
+
+</body>
+</html>
