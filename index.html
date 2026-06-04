@@ -1,337 +1,1086 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>feuille d'or</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital@1&family=Great+Vibes&family=Raleway:wght@100;200;300&display=swap" rel="stylesheet">
+
 
 <style>
+:root{
+  --black:#050505;
+  --white:#ffffff;
+  --soft:#f7f3ee;
+  --line:#e8e2da;
+  --gold:#c9a45d;
+  --green:#25D366;
+  --text:#111111;
+  --muted:#6f6f6f;
+
+  /* 统一断点说明：
+     手机：480px
+     大手机：768px
+     平板：1024px
+     桌面：1440px
+  */
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-margin:0;
-font-family: Arial;
-background:#fff;
-color:#111;
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#fff;
+  color:var(--text);
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+button,
+a{
+  -webkit-tap-highlight-color:transparent;
 }
 
 /* ===== TOP BAR ===== */
 .ticker{
-background:#000;
-color:#fff;
-overflow:hidden;
-white-space:nowrap;
+  background:#000;
+  color:#c8102e;
+  overflow:hidden;
+  white-space:nowrap;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:0.4px;
 }
 
 .ticker span{
-display:inline-block;
-padding:10px 0;
-animation:scroll 18s linear infinite;
+  display:inline-block;
+  padding:11px 0;
+  animation:scroll 22s linear infinite;
 }
 
 @keyframes scroll{
-0%{transform:translateX(100%);}
-100%{transform:translateX(-100%);}
+  0%{transform:translateX(100%);}
+  100%{transform:translateX(-100%);}
 }
 
 /* ===== NAV ===== */
 header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 50px;
-background:rgba(250,246,240,0.92);
-backdrop-filter:blur(12px);
-border-bottom:1px solid rgba(0,0,0,0.06);
-position:sticky;
-top:0;
-z-index:999;
+  width:100%;
+  background:linear-gradient(135deg,#f4ead8 0%,#e8dcc4 45%,#d8c6a3 100%);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(120,90,45,0.16);
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+
+.nav-inner{
+  max-width:1440px;
+  margin:0 auto;
+  padding:22px clamp(18px,4vw,70px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
 }
 
 .logo{
-font-size:20px;
-letter-spacing:3px;
-font-weight:300;
+  font-family:Georgia, "Times New Roman", serif;
+  font-size:clamp(24px,2.2vw,34px);
+  font-weight:400;
+  letter-spacing:-1px;
+  cursor:pointer;
+  color:#000;
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:42px;
 }
 
 nav a{
-margin:0 10px;
-cursor:pointer;
-text-decoration:none;
-color:#111;
-font-size:13px;
+  color:#000;
+  text-decoration:none;
+  font-size:15px;
+  cursor:pointer;
+  padding-bottom:6px;
+}
+
+nav a:hover{
+  border-bottom:1px solid #000;
+}
+
+.nav-icons{
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+
+.icon-btn{
+  background:none;
+  color:#000;
+  border:0;
+  padding:0;
+  margin:0;
+  font-size:24px;
+  cursor:pointer;
+}
+
+.hamburger{
+  display:none;
+  width:32px;
+  height:24px;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  position:relative;
+}
+
+.hamburger span{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:2px;
+  background:#000;
+  transition:.3s;
+}
+
+.hamburger span:nth-child(1){top:3px;}
+.hamburger span:nth-child(2){top:11px;}
+.hamburger span:nth-child(3){top:19px;}
+
+.hamburger.open span:nth-child(1){
+  transform:rotate(45deg);
+  top:11px;
+}
+.hamburger.open span:nth-child(2){
+  opacity:0;
+}
+.hamburger.open span:nth-child(3){
+  transform:rotate(-45deg);
+  top:11px;
 }
 
 /* ===== PAGE ===== */
 .page{
-display:none;
-padding:50px;
+  display:none;
+  max-width:1440px;
+  margin:0 auto;
+  padding:clamp(24px,5vw,70px);
 }
 
 .active{
-display:block;
+  display:block;
 }
 
-/* ===== HOME ===== */
+/* ===== HOME HERO ===== */
 .hero{
-text-align:center;
-padding:160px 20px;
+  background:#fff;
+  border-radius:34px;
+  text-align:center;
+  padding:clamp(54px,9vw,145px) clamp(18px,5vw,72px) clamp(40px,7vw,90px);
 }
 
 .hero h1{
-font-size:52px;
-letter-spacing:5px;
-font-weight:300;
+  margin:0;
+  font-family:Impact, Haettenschweiler, "Arial Black", "Franklin Gothic Heavy", sans-serif;
+  font-size:clamp(42px,8.6vw,128px);
+  line-height:.9;
+  letter-spacing:clamp(1px,.65vw,9px);
+  font-weight:900;
+  text-transform:uppercase;
+  transform:scaleX(1.02);
 }
 
-.hero p{
-color:#666;
-font-style:italic;
+.hero-subtitle{
+  max-width:920px;
+  margin:clamp(20px,3vw,38px) auto clamp(34px,4vw,55px);
+  font-family:"Brush Script MT", "Segoe Script", "Snell Roundhand", cursive;
+  font-size:clamp(24px,4.5vw,50px);
+  line-height:1.35;
+  font-style:italic;
+  color:#171717;
+  letter-spacing:.2px;
 }
 
-/* ===== 4x5 GRID ===== */
+.hero-actions{
+  width:min(760px,100%);
+  margin:0 auto;
+  display:grid;
+  gap:20px;
+}
+
+.btn{
+  border-radius:999px;
+  min-height:58px;
+  padding:15px 28px;
+  border:1px solid #000;
+  background:#fff;
+  color:#000;
+  font-size:20px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.btn.black{
+  background:#000;
+  color:#fff;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.home-carousel{
+  margin-top:55px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:14px;
+}
+
+.slide-card{
+  height:280px;
+  border-radius:14px;
+  overflow:hidden;
+  background:#eee;
+  position:relative;
+}
+
+.slide-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.ad-card{
+  background:linear-gradient(135deg,#0b0704,#2a1d13);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+  letter-spacing:8px;
+  font-size:26px;
+  text-transform:uppercase;
+}
+
+.ad-card small{
+  display:block;
+  margin-top:16px;
+  letter-spacing:4px;
+  color:#c9a45d;
+}
+
+/* ===== PRODUCTS ===== */
 .products{
-display:grid;
-grid-template-columns:repeat(4, 1fr);
-gap:20px;
-}
-
-/* 手机适配 */
-@media(max-width:1000px){
-.products{
-grid-template-columns:repeat(2, 1fr);
-}
-}
-
-@media(max-width:600px){
-.products{
-grid-template-columns:1fr;
-}
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
 }
 
 .card{
-border:1px solid #eee;
-cursor:pointer;
-transition:0.3s;
-background:#fff;
+  border:1px solid #eee;
+  cursor:pointer;
+  background:#fff;
+  transition:.3s;
+  border-radius:14px;
+  overflow:hidden;
 }
 
 .card:hover{
-transform:translateY(-6px);
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
 }
 
 .card img{
-width:100%;
-height:180px;
-object-fit:cover;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
 }
 
 .card-content{
-padding:10px;
+  padding:14px;
+}
+
+.card-content h3{
+  margin:0 0 8px;
+  font-size:16px;
 }
 
 /* ===== PRODUCT DETAIL ===== */
 .product-layout{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+}
+
+.product-gallery{
+  display:grid;
+  gap:12px;
 }
 
 .product-gallery img{
-width:100%;
-margin-bottom:10px;
-background:#f3f3f3;
+  width:100%;
+  border-radius:16px;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  background:#f3f3f3;
 }
 
-/* ===== FORM ===== */
+.product-info h2{
+  font-size:clamp(34px,4vw,58px);
+  margin:0 0 14px;
+  font-family:Impact, Haettenschweiler, "Arial Black", sans-serif;
+  letter-spacing:2px;
+}
+
+.price{
+  font-size:24px;
+  margin:18px 0;
+}
+
+.accordion{
+  border-top:1px solid #ddd;
+  margin-top:28px;
+}
+
+.accordion-item{
+  border-bottom:1px solid #ddd;
+}
+
+.accordion-title{
+  width:100%;
+  background:#fff;
+  color:#000;
+  border:0;
+  margin:0;
+  padding:20px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:17px;
+  cursor:pointer;
+}
+
+.accordion-content{
+  display:none;
+  padding:0 0 20px;
+  color:#666;
+  line-height:1.7;
+}
+
+.accordion-item.open .accordion-content{
+  display:block;
+}
+
+.buy-main{
+  width:100%;
+  margin-top:26px;
+}
+
+/* ===== FORM / MAP ===== */
 input, select, textarea{
-width:100%;
-padding:12px;
-margin-bottom:10px;
-border:1px solid #ddd;
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-size:15px;
 }
 
-button{
-background:black;
-color:white;
-padding:10px;
-border:none;
-cursor:pointer;
-margin-top:10px;
+textarea{
+  min-height:120px;
 }
 
-.success{
-color:green;
-display:none;
+.map-section{
+  margin-top:42px;
+}
+
+.map-frame{
+  width:100%;
+  height:360px;
+  border:0;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+/* ===== FLOATING / STICKY ===== */
+.whatsapp{
+  position:fixed;
+  right:24px;
+  bottom:90px;
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:var(--green);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font-size:34px;
+  z-index:1000;
+  box-shadow:0 10px 24px rgba(37,211,102,.35);
+}
+
+.mobile-buy-bar{
+  display:none;
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  background:#fff;
+  border-top:1px solid #ddd;
+  padding:12px 14px;
+  z-index:999;
+  box-shadow:0 -10px 28px rgba(0,0,0,.08);
+}
+
+.mobile-buy-bar button{
+  width:100%;
+  min-height:52px;
+  border-radius:999px;
+  background:#000;
+  color:#fff;
+  border:0;
+  font-size:16px;
 }
 
 /* ===== FOOTER ===== */
 footer{
-border-top:1px solid #eee;
-padding:50px;
-font-size:13px;
-color:#666;
+  border-top:1px solid #eee;
+  max-width:1440px;
+  margin:0 auto;
+  padding:50px clamp(20px,5vw,70px);
+  font-size:14px;
+  color:#666;
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
 }
 
-footer span{
-cursor:pointer;
-margin-right:10px;
-}
-
+footer span,
 footer a{
-margin-right:10px;
-color:#111;
-text-decoration:none;
+  color:#111;
+  text-decoration:none;
+  cursor:pointer;
 }
+
+/* ===== DESKTOP ≤1440px ===== */
+@media(max-width:1440px){
+  .page{
+    max-width:1280px;
+  }
+}
+
+/* ===== TABLET ≤1024px ===== */
+@media(max-width:1024px){
+  .nav-inner{
+    padding:18px 28px;
+  }
+
+  nav{
+    gap:26px;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero{
+    padding-top:90px;
+  }
+
+  .home-carousel{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .slide-card{
+    height:210px;
+  }
+
+  .product-layout{
+    gap:28px;
+  }
+}
+
+/* ===== LARGE MOBILE ≤768px ===== */
+@media(max-width:768px){
+  body{
+    padding-bottom:78px;
+  }
+
+  .nav-inner{
+    padding:16px 20px;
+  }
+
+  nav{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    display:none;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    background:linear-gradient(135deg,#f4ead8 0%,#e8dcc4 45%,#d8c6a3 100%);
+    border-bottom:1px solid rgba(120,90,45,0.16);
+    padding:14px 22px 22px;
+  }
+
+  nav.open{
+    display:flex;
+  }
+
+  nav a{
+    width:100%;
+    padding:16px 0;
+    border-bottom:1px solid #eee;
+  }
+
+  .hamburger{
+    display:block;
+  }
+
+  .nav-icons .search-icon{
+    display:none;
+  }
+
+  .page{
+    padding:22px 16px;
+  }
+
+  .hero{
+    border-radius:0;
+    padding:60px 14px 32px;
+  }
+
+  .hero h1{
+    font-size:clamp(40px,10vw,70px);
+    line-height:.95;
+  }
+
+  .hero-subtitle{
+    font-size:clamp(23px,6vw,34px);
+    margin-bottom:32px;
+  }
+
+  .btn{
+    width:100%;
+    min-height:54px;
+    font-size:16px;
+  }
+
+  .home-carousel{
+    margin-top:36px;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+
+  .slide-card{
+    height:150px;
+    border-radius:10px;
+  }
+
+  .ad-card{
+    font-size:15px;
+    letter-spacing:4px;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+  }
+
+  .product-layout{
+    grid-template-columns:1fr;
+  }
+
+  .mobile-buy-bar{
+    display:block;
+  }
+
+  .whatsapp{
+    width:52px;
+    height:52px;
+    right:14px;
+    bottom:86px;
+    font-size:28px;
+  }
+
+  footer{
+    display:block;
+    text-align:center;
+    padding-bottom:96px;
+  }
+
+  footer span,
+  footer a{
+    display:block;
+    margin-bottom:12px;
+  }
+}
+
+/* ===== MOBILE ≤480px ===== */
+@media(max-width:480px){
+  .ticker{
+    font-size:11px;
+  }
+
+  .logo{
+    font-size:22px;
+  }
+
+  .hero{
+    padding-top:44px;
+  }
+
+  .hero h1{
+    font-size:43px;
+    letter-spacing:1px;
+  }
+
+  .hero-subtitle{
+    font-size:24px;
+    max-width:310px;
+  }
+
+  .hero-actions{
+    gap:13px;
+  }
+
+  .home-carousel{
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+  }
+
+  .slide-card{
+    height:105px;
+  }
+
+  .products{
+    grid-template-columns:1fr;
+  }
+
+  .card img{
+    aspect-ratio:1/1;
+  }
+
+  .product-info h2{
+    font-size:38px;
+  }
+
+  .map-frame{
+    height:280px;
+  }
+}
+
+/* ===== BRAND SIGNATURE HERO：根据品牌参考图重新排版，不使用图片 ===== */
+.brand-signature{
+  width:min(920px,100%);
+  margin:0 auto clamp(34px,4vw,56px);
+  text-align:center;
+  color:#111;
+}
+
+.brand-topline{
+  font-family:"Raleway", Arial, sans-serif;
+  font-weight:100;
+  text-transform:uppercase;
+  letter-spacing:clamp(8px,1.9vw,120px);
+  font-size:clamp(10px,1.2vw,16px);
+  line-height:1.5;
+  white-space:nowrap;
+  transform:translateX(clamp(4px,.8vw,20px));
+  color:#000;
+  font-weight:300;
+}
+
+.brand-name{
+  font-family:"Cinzel", Georgia, serif;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:clamp(6px,1vw,16px);
+  font-size:clamp(46px,8.5vw,112px);
+  line-height:1.05;
+  margin:clamp(10px,1.5vw,18px) 0 clamp(4px,1vw,12px);
+  white-space:nowrap;
+  color:#111;
+}
+
+.atelier-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(14px,2vw,34px);
+  margin:0 auto clamp(12px,1.8vw,24px);
+}
+
+.atelier-row span{
+  display:block;
+  width:clamp(52px,9vw,160px);
+  height:1px;
+  background:#111;
+  position:relative;
+}
+
+.atelier-row span::before,
+.atelier-row span::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#111;
+  transform:translateY(-50%);
+}
+
+.atelier-row span::before{left:0;}
+.atelier-row span::after{right:0;}
+
+.atelier-script{
+  font-family:"Great Vibes", cursive;
+  font-size:clamp(42px,5.4vw,82px);
+  line-height:1;
+  white-space:nowrap;
+}
+
+.brand-bottomline{
+  font-family:"EB Garamond", Georgia, serif;
+  font-style:italic;
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:clamp(8px,1.9vw,120px);
+  font-size:clamp(10px,1.2vw,16px);
+  line-height:1.8;
+  color:#000;
+  margin-top:12px;
+}
+
+@media(max-width:1024px){
+  .brand-signature{
+    width:min(760px,100%);
+  }
+
+  .brand-topline{
+    letter-spacing:clamp(6px,1.4vw,18px);
+  }
+
+  .brand-name{
+    letter-spacing:clamp(6px,1vw,16px);
+  }
+}
+
+@media(max-width:768px){
+  .brand-signature{
+    width:min(560px,100%);
+    margin-bottom:32px;
+  }
+
+  .brand-topline{
+    white-space:normal;
+    letter-spacing:6px;
+    font-size:12px;
+  }
+
+  .brand-name{
+    font-size:clamp(42px,10vw,72px);
+    letter-spacing:7px;
+  }
+
+  .atelier-row{
+    gap:12px;
+  }
+
+  .atelier-row span{
+    width:70px;
+  }
+
+  .atelier-script{
+    font-size:clamp(38px,8vw,58px);
+  }
+
+  .brand-bottomline{
+    font-size:clamp(15px,3.5vw,22px);
+    letter-spacing:3px;
+  }
+}
+
+@media(max-width:480px){
+  .brand-topline{
+    font-size:10px;
+    letter-spacing:4px;
+  }
+
+  .brand-name{
+    font-size:40px;
+    letter-spacing:4px;
+  }
+
+  .atelier-row span{
+    width:44px;
+  }
+
+  .atelier-script{
+    font-size:38px;
+  }
+
+  .brand-bottomline{
+    font-size:14px;
+    letter-spacing:2px;
+    line-height:1.55;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- TOP -->
 <div class="ticker">
-<span>⚡ New Collection · Free EU Shipping · Limited Edition · Feuille d'Or · ART DES MAINS ·</span>
+  <span>✨ Free EU Shipping on all orders over €59 &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Limited Edition · Handcrafted Luxury &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Secure Payments &nbsp;&nbsp;&nbsp;</span>
 </div>
 
-<!-- NAV -->
 <header>
-<div class="logo">feuille d'or</div>
+  <div class="nav-inner">
+    <div class="logo" onclick="go('home')">feuille d’or</div>
 
-<nav>
-<a onclick="go('home')">Home</a>
-<a onclick="go('shop')">Shop</a>
-<a onclick="go('giftcard')">Gift Card</a>
-<a onclick="go('partner')">Partner Ecosystem</a>
-</nav>
+    <nav id="nav">
+      <a onclick="go('home')">Home</a>
+      <a onclick="go('shop')">Shop</a>
+      <a onclick="go('giftcard')">Gift Card</a>
+      <a onclick="go('partner')">Partner Ecosystem</a>
+    </nav>
+
+    <div class="nav-icons">
+      <button class="icon-btn search-icon" aria-label="Search">⌕</button>
+      <button class="icon-btn" aria-label="Cart">♧</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
 </header>
 
-<!-- HOME -->
-<div id="home" class="page active">
-<div class="hero">
-<h1>ART DES MAINS</h1>
-<p>Empreinte maîtrisée. Beauté responsable.</p>
-</div>
-</div>
+<main>
+  <section id="home" class="page active">
+    <div class="hero">
+      <div class="brand-signature">
+        <div class="brand-topline">ART DES MAINS, EMPREINTE MAÎTRISÉE</div>
+        <div class="brand-name">FEUILLE D'OR</div>
 
-<!-- SHOP (4x5 = 20 PRODUCTS) -->
-<div id="shop" class="page">
+        <div class="atelier-row">
+          <span></span>
+          <div class="atelier-script">Nail Atelier</div>
+          <span></span>
+        </div>
 
-<h2>Shop Collection</h2>
+        <div class="brand-bottomline">
+          CONÇU POUR LIMITER LES EFFETS SUR<br>
+          LA SANTÉ DES ONGLES NATURELS
+        </div>
+      </div>
 
-<div class="products" id="grid"></div>
+      <div class="hero-actions">
+        <button class="btn black" onclick="go('shop')">Shop Collection</button>
+        <button class="btn" onclick="go('partner')">Become Partner</button>
+      </div>
 
-</div>
+      <div class="home-carousel" aria-label="Product carousel">
+        <div class="slide-card">
+          <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80" alt="Nail product 1" loading="lazy">
+        </div>
+        <div class="slide-card ad-card">
+          <div>New<br>Collection<small>Limited</small></div>
+        </div>
+        <div class="slide-card">
+          <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=80" alt="Nail product 2" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- PRODUCT -->
-<div id="product" class="page">
+  <section id="shop" class="page">
+    <h2>Shop Collection</h2>
+    <div class="products" id="grid"></div>
+  </section>
 
-<div class="product-layout">
+  <section id="product" class="page">
+    <div class="product-layout">
+      <div class="product-gallery">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80" alt="Product image">
+        <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=80" alt="Product image">
+        <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=900&q=80" alt="Product image">
+      </div>
 
-<div>
-<div style="height:120px;background:#f3f3f3;margin-bottom:10px;"></div>
-<div style="height:120px;background:#f3f3f3;margin-bottom:10px;"></div>
-<div style="height:120px;background:#f3f3f3;"></div>
-</div>
+      <div class="product-info">
+        <h2 id="title">Golden French</h2>
+        <p id="desc">Luxury press-on nails design, handcrafted for elegant everyday wear.</p>
+        <p class="price">€29</p>
 
-<div>
-<h2 id="title"></h2>
-<p id="desc"></p>
+        <button class="btn black buy-main" onclick="stripePay()">Buy Now with Stripe</button>
 
-<h3>Options</h3>
-<select>
-<option>Size S / M / L</option>
-<option>Custom Fit</option>
-</select>
+        <div class="accordion">
+          <div class="accordion-item open">
+            <button class="accordion-title" onclick="toggleAccordion(this)">Options <span>+</span></button>
+            <div class="accordion-content">
+              Size S / M / L · Custom Fit available. Each set can be adjusted according to your nail shape.
+            </div>
+          </div>
 
-<h3>Included</h3>
-<p>10 nails · glue · kit</p>
+          <div class="accordion-item">
+            <button class="accordion-title" onclick="toggleAccordion(this)">Included <span>+</span></button>
+            <div class="accordion-content">
+              10 nails · glue · application kit · storage box · care guide.
+            </div>
+          </div>
 
-<h3>Delivery</h3>
-<p>3–7 days EU</p>
+          <div class="accordion-item">
+            <button class="accordion-title" onclick="toggleAccordion(this)">Delivery <span>+</span></button>
+            <div class="accordion-content">
+              EU delivery usually takes 3–7 working days. Free EU shipping on orders over €59.
+            </div>
+          </div>
 
-<button>Buy Now</button>
+          <div class="accordion-item">
+            <button class="accordion-title" onclick="toggleAccordion(this)">Reviews <span>+</span></button>
+            <div class="accordion-content">
+              ⭐️⭐️⭐️⭐️⭐️ Elegant, long lasting, and very easy to apply.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<h3>Reviews</h3>
-<p>⭐️⭐️⭐️⭐️⭐️ Elegant & long lasting</p>
-</div>
+  <section id="giftcard" class="page">
+    <h2>Gift Card</h2>
+    <p>Digital gift card available for all collections.</p>
+    <button class="btn black" onclick="stripePay()">Buy Gift Card with Stripe</button>
+  </section>
 
-</div>
-</div>
+  <section id="partner" class="page">
+    <h2>Partner Application</h2>
 
-<!-- GIFT CARD -->
-<div id="giftcard" class="page">
-<h2>Gift Card</h2>
-<p>Digital gift card available for all collections.</p>
-<button>Buy Gift Card</button>
-</div>
+    <input placeholder="Full Name">
+    <input placeholder="Email">
 
-<!-- PARTNER -->
-<div id="partner" class="page">
-<h2>Partner Application</h2>
+    <select>
+      <option>Creator</option>
+      <option>Reseller</option>
+      <option>Salon</option>
+      <option>Brand Collaboration</option>
+    </select>
 
-<input placeholder="Full Name">
-<input placeholder="Email">
+    <textarea placeholder="Your idea..."></textarea>
+    <button class="btn black">Submit</button>
 
-<select>
-<option>Creator</option>
-<option>Reseller</option>
-<option>Salon</option>
-<option>Brand Collaboration</option>
-</select>
+    <div class="map-section">
+      <h2>Find Us</h2>
+      <iframe
+        class="map-frame"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Paris%20France&output=embed">
+      </iframe>
+    </div>
+  </section>
+</main>
 
-<textarea placeholder="Your idea..."></textarea>
-
-<button>Submit</button>
-</div>
-
-<!-- FOOTER -->
 <footer>
-
-<span onclick="go('shop')">Shop</span>
-<span onclick="go('giftcard')">Gift Card</span>
-<span onclick="go('partner')">Partner</span>
-
-<br><br>
-
-<a href="https://instagram.com/YOUR" target="_blank">Instagram</a>
-<a href="https://tiktok.com/@YOUR" target="_blank">TikTok</a>
-
+  <span onclick="go('shop')">Shop</span>
+  <span onclick="go('giftcard')">Gift Card</span>
+  <span onclick="go('partner')">Partner</span>
+  <a href="https://instagram.com/YOUR" target="_blank">Instagram</a>
+  <a href="https://tiktok.com/@YOUR" target="_blank">TikTok</a>
 </footer>
 
-<script>
+<a class="whatsapp" href="https://wa.me/33600000000" target="_blank" aria-label="WhatsApp">☘</a>
 
+<div class="mobile-buy-bar" id="mobileBuyBar">
+  <button onclick="stripePay()">Buy Now · €29</button>
+</div>
+
+<script>
 function go(id){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  closeMenu();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function toggleMenu(){
+  document.getElementById('nav').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+
+function closeMenu(){
+  document.getElementById('nav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
 }
 
 function openProduct(name){
-go('product');
-document.getElementById('title').innerText = name;
-document.getElementById('desc').innerText = "Luxury press-on nails design.";
+  go('product');
+  document.getElementById('title').innerText = name;
+  document.getElementById('desc').innerText = "Luxury press-on nails design, handcrafted for elegant everyday wear.";
 }
 
-/* 20 PRODUCTS */
+function toggleAccordion(button){
+  const item = button.closest('.accordion-item');
+  item.classList.toggle('open');
+}
+
+function stripePay(){
+  /*
+    Stripe 接入说明：
+    1. 正式上线时，请把下面的链接替换成你的 Stripe Payment Link。
+    2. 推荐在 Stripe 后台创建产品和价格，然后复制 Payment Link。
+    3. 不建议直接在前端暴露 Secret Key。
+  */
+  window.open("https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK", "_blank");
+}
+
 const products = [
-"Golden French","Black Minimal","Pearl White","Rose Nude",
-"Chrome Silver","Soft Beige","Milky Pink","Luxury Gold",
-"French Classic","Matte Black","Crystal Shine","Elegant Nude",
-"Soft Glow","Minimal White","Dark Wine","Champagne Gold",
-"Pearl Glow","Silk Pink","Luxury Black","Ivory Cream"
+  "Golden French","Black Minimal","Pearl White","Rose Nude",
+  "Chrome Silver","Soft Beige","Milky Pink","Luxury Gold",
+  "French Classic","Matte Black","Crystal Shine","Elegant Nude",
+  "Soft Glow","Minimal White","Dark Wine","Champagne Gold",
+  "Pearl Glow","Silk Pink","Luxury Black","Ivory Cream"
 ];
 
 const grid = document.getElementById("grid");
 
-products.forEach(p=>{
-grid.innerHTML += `
-<div class="card" onclick="openProduct('${p}')">
-<img src="https://images.unsplash.com/photo-1604654894610-df63bc536371">
-<div class="card-content">
-<h3>${p}</h3>
-<p>€29</p>
-</div>
-</div>
-`;
-});
+products.forEach((p, index)=>{
+  const images = [
+    "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=900&q=80"
+  ];
 
+  grid.innerHTML += `
+    <div class="card" onclick="openProduct('${p}')">
+      <img src="${images[index % images.length]}" alt="${p}" loading="lazy">
+      <div class="card-content">
+        <h3>${p}</h3>
+        <p>€29</p>
+      </div>
+    </div>
+  `;
+});
 </script>
 
 </body>
