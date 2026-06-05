@@ -10,6 +10,56 @@
 
 
 <style>
+  .embedded-ongles-hero-wrap{
+  width:min(1180px,92%);
+  margin:80px auto;
+  overflow:hidden;
+  border-radius:28px;
+}
+
+.embedded-ongles-hero{
+  display:grid;
+  grid-template-columns:42% 58%;
+  min-height:650px;
+  background:linear-gradient(
+      90deg,
+      #fbf3ee 0%,
+      #fbf3ee 42%,
+      #f6e8e3 42%,
+      #f6e8e3 100%
+  );
+}
+
+.embedded-ongles-hero-text{
+  padding:120px 7vw 70px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.embedded-script{
+  font-family:"Brush Script MT",cursive;
+  font-size:52px;
+  margin-bottom:28px;
+}
+
+.embedded-small-line{
+  width:44px;
+  height:1px;
+  background:#d6a99e;
+  margin-bottom:28px;
+}
+
+.embedded-ongles-hero-text p{
+  font-size:22px;
+  line-height:1.55;
+  max-width:380px;
+}
+
+.embedded-ongles-hero-image{
+  background:url("你的图片地址.jpg")
+             center center/cover no-repeat;
+}
 :root{
   --black:#050505;
   --white:#ffffff;
@@ -1075,7 +1125,35 @@ footer a{
           LA SANTÉ DES ONGLES NATURELS
         </div>
       </div>
+<div class="embedded-ongles-hero-wrap">
 
+  <div class="embedded-ongles-hero">
+
+    <div class="embedded-ongles-hero-text">
+
+      <div class="embedded-script">
+        Élégance Paris
+      </div>
+
+      <div class="embedded-small-line"></div>
+
+      <p>
+        Press-On Nails inspirés de
+        l'élégance parisienne.
+      </p>
+
+      <p>
+        Conçus pour préserver la beauté
+        naturelle de vos ongles.
+      </p>
+
+    </div>
+
+    <div class="embedded-ongles-hero-image"></div>
+
+  </div>
+
+</div>
       <div class="hero-actions">
         <button class="btn black" onclick="go('shop')">Shop Collection</button>
         <button class="btn" onclick="go('partner')">Become Partner</button>
