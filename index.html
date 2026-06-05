@@ -868,6 +868,119 @@ footer a{
   border-radius:0;
 }
 
+
+/* ===== GENERATED PRODUCTS UNDER HERO ===== */
+.generated-products-section{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+  padding:clamp(44px,5vw,76px) clamp(16px,5vw,72px);
+  background:linear-gradient(180deg,#fffaf7 0%,#fff 100%);
+}
+
+.generated-products-heading{
+  text-align:center;
+  margin-bottom:clamp(28px,4vw,48px);
+}
+
+.generated-products-heading h2{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(26px,3vw,42px);
+  letter-spacing:3px;
+  font-weight:400;
+  color:#4b342d;
+}
+
+.generated-products-heading span{
+  display:block;
+  width:54px;
+  height:1px;
+  background:#d6a99e;
+  margin:16px auto 0;
+}
+
+.generated-products-grid{
+  width:min(1180px,100%);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(18px,2.2vw,30px);
+}
+
+.generated-product-card{
+  background:#fff;
+  border:1px solid #ead6cf;
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow:0 16px 34px rgba(75,52,45,.06);
+  transition:.28s ease;
+}
+
+.generated-product-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 22px 46px rgba(75,52,45,.12);
+}
+
+.generated-product-card img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+}
+
+.generated-product-info{
+  text-align:center;
+  padding:18px 12px 22px;
+}
+
+.generated-product-info h3{
+  margin:0 0 8px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:16px;
+  letter-spacing:1.6px;
+  color:#4b342d;
+}
+
+.generated-product-info p{
+  margin:0 0 12px;
+  font-size:13px;
+  color:#8b6f67;
+}
+
+.generated-product-info span{
+  font-size:16px;
+  color:#111;
+}
+
+@media(max-width:768px){
+  .generated-products-section{
+    padding:34px 14px 46px;
+  }
+
+  .generated-products-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .generated-product-card{
+    border-radius:14px;
+  }
+
+  .generated-product-info{
+    padding:13px 8px 16px;
+  }
+
+  .generated-product-info h3{
+    font-size:13px;
+    letter-spacing:1px;
+  }
+
+  .generated-product-info p{
+    font-size:11px;
+  }
+}
+
 </style>
 </head>
 
