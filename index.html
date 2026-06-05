@@ -102,7 +102,7 @@ header{
   font-weight:400;
   letter-spacing:-1px;
   cursor:pointer;
-  color:#000;
+  color:#000000;
 }
 
 nav{
@@ -474,7 +474,7 @@ footer{
 
 footer span,
 footer a{
-  color:#111;
+  color:#e6a5b8;
   text-decoration:none;
   cursor:pointer;
 }
@@ -497,7 +497,7 @@ footer a{
   }
 
   .products{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr;
   }
 
   .hero{
@@ -693,7 +693,7 @@ footer a{
   width:min(920px,100%);
   margin:0 auto clamp(34px,4vw,56px);
   text-align:center;
-  color:#111;
+  color:#e6a5b8;
 }
 
 .brand-topline{
@@ -718,7 +718,7 @@ footer a{
   line-height:1.05;
   margin:clamp(10px,1.5vw,18px) 0 clamp(4px,1vw,12px);
   white-space:nowrap;
-  color:#111;
+  color:#e6a5b8;
 }
 
 .atelier-row{
@@ -753,6 +753,7 @@ footer a{
 .atelier-row span::after{right:0;}
 
 .atelier-script{
+  color:#d8c7a1;
   font-family:"Great Vibes", cursive;
   font-size:clamp(42px,5.4vw,82px);
   line-height:1;
@@ -846,6 +847,186 @@ footer a{
   }
 }
 
+
+/* ===== HOME MODEL PROMO + 2x2 PRODUCT GRID ===== */
+.home-carousel{
+  display:none;
+}
+
+.home-visual-section{
+  width:100%;
+  margin-top:clamp(42px,5vw,76px);
+}
+
+.model-promo-top{
+  width:min(1180px,92%);
+  margin:0 auto clamp(18px,2.2vw,30px);
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:clamp(14px,2vw,30px);
+}
+
+.model-promo-card{
+  overflow:hidden;
+  border-radius:22px;
+  aspect-ratio:16/8;
+  background:#f3f3f3;
+}
+
+.model-promo-wide{
+  width:100%;
+  margin:0 0 clamp(28px,4vw,52px);
+  border-radius:0;
+  overflow:hidden;
+  aspect-ratio:16/7;
+  background:#f3f3f3;
+}
+
+.model-promo-card img,
+.model-promo-wide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.home-product-grid{
+  width:min(1180px,92%);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:clamp(16px,2.2vw,32px);
+}
+
+.home-product-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  aspect-ratio:1/1.08;
+  background:#f3f3f3;
+  cursor:pointer;
+}
+
+.home-product-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.35s ease;
+}
+
+.home-product-card:hover img{
+  transform:scale(1.04);
+}
+
+.home-product-card div{
+  position:absolute;
+  left:18px;
+  bottom:18px;
+  padding:9px 16px;
+  border-radius:999px;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(8px);
+  font-size:14px;
+  letter-spacing:.8px;
+}
+
+/* 桌面 ≤1440px */
+@media(max-width:1440px){
+  .model-promo-top,
+  .home-product-grid{
+    width:92%;
+  }
+}
+
+/* 平板 ≤1024px */
+@media(max-width:1024px){
+  .model-promo-top,
+  .home-product-grid{
+    width:94%;
+  }
+
+  .model-promo-card{
+    aspect-ratio:4/5.4;
+  }
+
+  .model-promo-wide{
+    aspect-ratio:16/8;
+  }
+}
+
+/* 大手机 ≤768px */
+@media(max-width:768px){
+  .home-visual-section{
+    margin-top:36px;
+  }
+
+  .model-promo-top{
+    width:92%;
+    gap:10px;
+  }
+
+  .model-promo-card{
+    border-radius:14px;
+    aspect-ratio:3/4.2;
+  }
+
+  .model-promo-wide{
+    aspect-ratio:16/10;
+  }
+
+  .home-product-grid{
+    width:92%;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .home-product-card{
+    border-radius:14px;
+    aspect-ratio:1/1.18;
+  }
+
+  .home-product-card div{
+    left:10px;
+    bottom:10px;
+    font-size:12px;
+    padding:7px 10px;
+  }
+}
+
+/* 手机 ≤480px */
+@media(max-width:480px){
+  .model-promo-top{
+    width:92%;
+    gap:8px;
+  }
+
+  .model-promo-card{
+    border-radius:12px;
+    aspect-ratio:3/4.5;
+  }
+
+  .model-promo-wide{
+    aspect-ratio:16/11;
+  }
+
+  .home-product-grid{
+    width:92%;
+    grid-template-columns:repeat(2,1fr);
+    gap:9px;
+  }
+
+  .home-product-card{
+    border-radius:12px;
+    aspect-ratio:1/1.25;
+  }
+
+  .home-product-card div{
+    font-size:11px;
+    left:8px;
+    bottom:8px;
+    padding:6px 8px;
+  }
+}
+
 </style>
 </head>
 
@@ -900,16 +1081,44 @@ footer a{
         <button class="btn" onclick="go('partner')">Become Partner</button>
       </div>
 
-      <div class="home-carousel" aria-label="Product carousel">
-        <div class="slide-card">
-          <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80" alt="Nail product 1" loading="lazy">
+      
+      <div class="home-visual-section">
+
+        <div class="model-promo-top">
+          <div class="model-promo-card">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1600&q=80" alt="Nude pink press-on nails campaign" loading="lazy">
+          </div>
+          <div class="model-promo-card">
+            <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1600&q=80" alt="Luxury nude press-on nails campaign" loading="lazy">
+          </div>
         </div>
-        <div class="slide-card ad-card">
-          <div>New<br>Collection<small>Limited</small></div>
+
+        <div class="home-product-grid">
+          <div class="home-product-card" onclick="openProduct('Golden French')">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1100&q=80" alt="Golden French" loading="lazy">
+            <div>Golden French</div>
+          </div>
+
+          <div class="home-product-card" onclick="openProduct('Pearl White')">
+            <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1100&q=80" alt="Pearl White" loading="lazy">
+            <div>Pearl White</div>
+          </div>
+
+          <div class="home-product-card" onclick="openProduct('Luxury Gold')">
+            <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=1100&q=80" alt="Luxury Gold" loading="lazy">
+            <div>Luxury Gold</div>
+          </div>
+
+          <div class="home-product-card" onclick="openProduct('Rose Nude')">
+            <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1100&q=80" alt="Rose Nude" loading="lazy">
+            <div>Rose Nude</div>
+          </div>
         </div>
-        <div class="slide-card">
-          <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=80" alt="Nail product 2" loading="lazy">
+
+        <div class="model-promo-wide">
+          <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1800&q=80" alt="Feuille d'Or model campaign wide" loading="lazy">
         </div>
+
       </div>
     </div>
   </section>
