@@ -1244,30 +1244,76 @@ function stripePay(){
  window.open("https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK", "_blank");
 }
 const products = [
- "Golden French","Black Minimal","Pearl White","Rose Nude",
- "Chrome Silver","Soft Beige","Milky Pink","Luxury Gold",
- "French Classic","Matte Black","Crystal Shine","Elegant Nude",
- "Soft Glow","Minimal White","Dark Wine","Champagne Gold",
- "Pearl Glow","Silk Pink","Luxury Black","Ivory Cream","Cup Cake","Sweet Cream"
+{
+  name: "Golden French",
+  price: "€29",
+  image: "images/golden-french.webp",
+ colors:["Pink","Nude"],
+ shape:"Medium Almond",
+ length:"Medium",
+  description: "A refined French manicure with golden details, designed for an elegant and timeless look."
+ },
+ {
+  name: "Black Minimal",
+  price: "€29",
+  image: "images/black-minimal.webp",
+ colors:["Pink","Nude"],
+ shape:"Medium Almond",
+ length:"Medium",
+  description: "A minimalist black nail design for a modern and sophisticated style."
+ },
+ {
+  name: "Pearl White",
+  price: "€29",
+  image: "images/pearl-white.webp",
+  colors:["Pink","Nude"],
+ shape:"Medium Almond",
+ length:"Medium",
+  description: "A soft pearl white finish with a clean and luminous appearance."
+ },
+ {
+  name: "Rose Nude",
+  price: "€29",
+  image: "images/rose-nude.webp",
+   colors:["Pink","Nude"],
+ shape:"Medium Almond",
+ length:"Medium",
+  description: "A natural rose nude shade for a soft everyday manicure."
+ },
+ {
+  name: "Cup Cake",
+  price: "€20",
+  image: "images/cup-cake.webp",
+   colors:["Pink","Nude"],
+ shape:"Medium Almond",
+ length:"Medium",
+  description: "A sweet pink cupcake-inspired design with soft nude tones and delicate crystal details."
+ },
+ {
+  name: "Sweet Cream",
+  price: "€20",
+  image: "images/sweet-cream.webp",
+ colors:["Pink","Nude"],
+ shape:"Medium Almond",
+ length:"Medium",
+  description: "A creamy pearl-white nail design inspired by soft whipped cream textures."
+ }
 ];
+
 const grid = document.getElementById("grid");
+
 initHomeProductCarousel();
-products.forEach((p, index)=>{
- const images = [
- "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80",
- "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=80",
- "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=900&q=80"
- ];
+
+products.forEach((p)=>{
  grid.innerHTML += `
- <div class="card" onclick="openProduct('${p}')">
- <img src="${images[index % images.length]}" alt="${p}" loading="lazy">
- <div class="card-content">
- <h3>${p}</h3>
- <p>€29</p>
- </div>
+ <div class="card" onclick="openProduct('${p.name}')">
+   <img src="${p.image}" alt="${p.name}" loading="lazy">
+   <div class="card-content">
+     <h3>${p.name}</h3>
+     <p>${p.price}</p>
+     <p class="product-colors">${p.colors.join(" / ")}</p>
+     <p class="product-description">${p.description}</p>
+   </div>
  </div>
  `;
 });
-</script>
-</body>
-</html>
