@@ -1346,7 +1346,7 @@ loadProducts();
 
 async function loadProducts(){
  try{
-  const response = await fetch('products.json?v=4', {cache:'no-store'});
+  const response = await fetch('products.json?v=5', {cache:'no-store'});
   if(!response.ok) throw new Error('products.json not found');
   products = await response.json();
  }catch(error){
