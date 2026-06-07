@@ -1379,44 +1379,23 @@ function getProductImages(product){
 
 function getMainImage(product){
  const images = getProductImages(product);
- return images[0] || "";
+ return images[0] || '';
 }
-
-function getProductBasePrice(product){
- return product.variants?.[0]?.price || product.price || "";
-}
-
-function getVariantValues(product, key){
- return [...new Set((product.variants || []).map(item => item[key]).filter(Boolean))];
-}
-
 function renderProducts(){
  if(!grid) return;
-
  grid.innerHTML = products.map((p, index)=>`
-  <div class="card" onclick="openProductByIndex(${index})">
+ <div class="card" onclick="openProductByIndex(${index})">
    <img src="${safeText(getMainImage(p))}" alt="${safeText(p.name)}" loading="lazy">
    <div class="card-content">
-    <h3>${safeText(p.name)}</h3>
-    <p style="font-weight:bold;">${safeText(getProductBasePrice(p))}</p>
-    <p style="font-size:12px;color:#8b6f67;margin:6px 0;">
-     Colors: ${getVariantValues(p, "color").map(safeText).join(" / ")}
-    </p>
-    <p style="font-size:12px;color:#8b6f67;margin:6px 0;">
-     Shape: ${getVariantValues(p, "shape").map(safeText).join(" / ")}
-    </p>
-    <p style="font-size:12px;color:#8b6f67;margin:6px 0;">
-     Length: ${getVariantValues(p, "length").map(safeText).join(" / ")}
-    </p>
-    <p style="font-size:12px;color:#8b6f67;margin:6px 0;">
-     Custom: ${getVariantValues(p, "custom").map(safeText).join(" / ")}
-    </p>
-    <p style="font-size:12px;color:#666;line-height:1.45;margin-top:8px;">
-     ${safeText(p.description)}
-    </p>
+     <h3>${safeText(p.name)}</h3>
+     <p style="font-weight:bold;">${safeText(p.price)}</p>
+     <p style="font-size:12px;color:#8b6f67;margin:6px 0;">Colors: ${(p.colors || []).map(safeText).join(" / ")}</p>
+     <p style="font-size:12px;color:#8b6f67;margin:6px 0;">Shape: ${safeText(p.shape)}</p>
+     <p style="font-size:12px;color:#8b6f67;margin:6px 0;">Length: ${safeText(p.length)}</p>
+     <p style="font-size:12px;color:#666;line-height:1.45;margin-top:8px;">${safeText(p.description)}</p>
    </div>
-  </div>
- `).join("");
+ </div>
+ `).join('');
 }
 
 let selectedVariant = null;
@@ -1444,13 +1423,11 @@ function findMatchingVariant(product){
  const color = document.getElementById("variantColor")?.value;
  const shape = document.getElementById("variantShape")?.value;
  const length = document.getElementById("variantLength")?.value;
- const custom = document.getElementById("variantCustom")?.value;
 
  return product.variants.find(v =>
   (!color || v.color === color) &&
   (!shape || v.shape === shape) &&
-  (!length || v.length === length) &&
-  (!custom || v.custom === custom)
+  (!length || v.length === length)
  ) || product.variants[0];
 }
 
@@ -1460,10 +1437,10 @@ function updateSelectedVariant(){
  selectedVariant = findMatchingVariant(currentProduct);
 
  const priceEl = document.querySelector("#product .price");
- if(priceEl) priceEl.innerText = selectedVariant?.price || "";
+ if(priceEl) priceEl.innerText = selectedVariant?.price || currentProduct.price || "";
 
  const mobileBtn = document.querySelector("#mobileBuyBar button");
- if(mobileBtn) mobileBtn.innerText = `Buy Now · ${selectedVariant?.price || ""}`;
+ if(mobileBtn) mobileBtn.innerText = `Buy Now · ${selectedVariant?.price || currentProduct.price || ""}`;
 }
 
 function openProductByIndex(index){
@@ -1487,7 +1464,7 @@ function openProductByIndex(index){
  const productInfo = document.querySelector("#product .product-info");
  let variantBox = document.getElementById("variantOptions");
 
- if(!variantBox && productInfo){
+if(!variantBox && productInfo){
   variantBox = document.createElement("div");
   variantBox.id = "variantOptions";
   const accordion = productInfo.querySelector(".accordion");
@@ -1505,7 +1482,6 @@ function openProductByIndex(index){
     ${renderVariantSelect("variantColor", "Color", uniqueValues(product.variants, "color"))}
     ${renderVariantSelect("variantShape", "Shape", uniqueValues(product.variants, "shape"))}
     ${renderVariantSelect("variantLength", "Length", uniqueValues(product.variants, "length"))}
-    ${renderVariantSelect("variantCustom", "Custom", uniqueValues(product.variants, "custom"))}
    `;
   }else{
    variantBox.innerHTML = "";
