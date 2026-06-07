@@ -16,7 +16,7 @@
     "length": "Medium",
     "description": "A refined French manicure with golden details, designed for an elegant and timeless look.",
     "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
-  },
+  }
   {
     "id": "FD002",
     "name": "Black Minimal",
@@ -34,7 +34,7 @@
     "length": "Medium",
     "description": "A minimalist black nail design for a modern and sophisticated style.",
     "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
-  },
+  }
   {
     "id": "FD003",
     "name": "Pearl White",
@@ -52,7 +52,7 @@
     "length": "Medium",
     "description": "A soft pearl white finish with a clean and luminous appearance.",
     "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
-  },
+  }
   {
     "id": "FD004",
     "name": "Rose Nude",
@@ -69,7 +69,7 @@
     "length": "Medium",
     "description": "A natural rose nude shade for a soft everyday manicure.",
     "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
-  },
+  }
 {
   "id": "FD005",
   "name": "Cup Cake",
@@ -86,21 +86,21 @@
       "length": "Medium",
       "price": "€25",
       "stripeLink": "https://buy.stripe.com/链接25"
-    },
+    }
     {
       "color": "Pink",
       "shape": "Almond",
       "length": "Short",
       "price": "€25",
       "stripeLink": "https://buy.stripe.com/链接25"
-    },
+    }
     {
       "color": "Pink",
       "shape": "Square",
       "length": "Medium",
       "price": "€25",
       "stripeLink": "https://buy.stripe.com/链接25"
-    },
+    }
     {
       "color": "Pink",
       "shape": "Square",
