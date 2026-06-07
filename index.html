@@ -1398,97 +1398,22 @@ function renderProducts(){
  `).join('');
 }
 
-let selectedVariant = null;
-
-function uniqueValues(list, key){
- return [...new Set(list.map(item => item[key]).filter(Boolean))];
-}
-
-function renderVariantSelect(id, label, values){
- if(!values.length) return "";
-
- return `
-  <label style="display:block;margin:18px 0 8px;font-size:14px;color:#666;">
-   ${label}
-  </label>
-  <select id="${id}" onchange="updateSelectedVariant()" style="width:100%;padding:14px;border:1px solid #ddd;border-radius:8px;font-size:15px;">
-   ${values.map(value => `<option value="${safeText(value)}">${safeText(value)}</option>`).join("")}
-  </select>
- `;
-}
-
-function findMatchingVariant(product){
- if(!product.variants || !product.variants.length) return null;
-
- const color = document.getElementById("variantColor")?.value;
- const shape = document.getElementById("variantShape")?.value;
- const length = document.getElementById("variantLength")?.value;
-
- return product.variants.find(v =>
-  (!color || v.color === color) &&
-  (!shape || v.shape === shape) &&
-  (!length || v.length === length)
- ) || product.variants[0];
-}
-
-function updateSelectedVariant(){
- if(!currentProduct) return;
-
- selectedVariant = findMatchingVariant(currentProduct);
-
- const priceEl = document.querySelector("#product .price");
- if(priceEl) priceEl.innerText = selectedVariant?.price || currentProduct.price || "";
-
- const mobileBtn = document.querySelector("#mobileBuyBar button");
- if(mobileBtn) mobileBtn.innerText = `Buy Now · ${selectedVariant?.price || currentProduct.price || ""}`;
-}
-
 function openProductByIndex(index){
  const product = products[index];
  if(!product) return;
-
  currentProduct = product;
- selectedVariant = product.variants?.[0] || null;
-
- go("product");
-
- document.getElementById("title").innerText = product.name;
- document.getElementById("desc").innerText = product.description || "";
-
- const gallery = document.querySelector("#product .product-gallery");
+ go('product');
+ document.getElementById('title').innerText = product.name;
+ document.getElementById('desc').innerText = product.description || '';
+ const priceEl = document.querySelector('#product .price');
+ if(priceEl) priceEl.innerText = product.price || '';
+ const mobileBtn = document.querySelector('#mobileBuyBar button');
+ if(mobileBtn) mobileBtn.innerText = `Buy Now · ${product.price || ''}`;
+ const gallery = document.querySelector('#product .product-gallery');
  if(gallery){
   const galleryImages = getProductImages(product);
-  gallery.innerHTML = galleryImages.map(src=>`<img src="${safeText(src)}" alt="${safeText(product.name)} image">`).join("");
+gallery.innerHTML = galleryImages.map(src=>`<img src="${safeText(src)}" alt="${safeText(product.name)} image">`).join('');
  }
-
- const productInfo = document.querySelector("#product .product-info");
- let variantBox = document.getElementById("variantOptions");
-
-if(!variantBox && productInfo){
-  variantBox = document.createElement("div");
-  variantBox.id = "variantOptions";
-  const accordion = productInfo.querySelector(".accordion");
-
-  if(accordion){
-   productInfo.insertBefore(variantBox, accordion);
-  }else{
-   productInfo.appendChild(variantBox);
-  }
- }
-
- if(variantBox){
-  if(product.variants && product.variants.length){
-   variantBox.innerHTML = `
-    ${renderVariantSelect("variantColor", "Color", uniqueValues(product.variants, "color"))}
-    ${renderVariantSelect("variantShape", "Shape", uniqueValues(product.variants, "shape"))}
-    ${renderVariantSelect("variantLength", "Length", uniqueValues(product.variants, "length"))}
-   `;
-  }else{
-   variantBox.innerHTML = "";
-  }
- }
-
- updateSelectedVariant();
 }
 
 function openProduct(name){
@@ -1497,11 +1422,8 @@ function openProduct(name){
 }
 
 function stripePay(){
- const link =
-  selectedVariant?.stripeLink ||
-  currentProduct?.stripeLink ||
-  "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK";
-
+ const link = currentProduct?.stripeLink || 
+ "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK";
  window.open(link, "_blank");
 }
 </script>
