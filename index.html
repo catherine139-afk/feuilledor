@@ -1226,9 +1226,19 @@ function closeMenu(){
  document.getElementById('hamburger').classList.remove('open');
 }
 function openProduct(name){
+ const product = products.find(p => p.name === name);
+ if(!product) return;
+
  go('product');
- document.getElementById('title').innerText = name;
- document.getElementById('desc').innerText = "Luxury press-on nails design, handcrafted for elegant everyday wear.";
+
+ document.getElementById('title').innerText = product.name;
+ document.getElementById('desc').innerHTML = `
+  <p><strong>Price:</strong> ${product.price}</p>
+  <p><strong>Colors:</strong> ${product.colors.join(" / ")}</p>
+  <p><strong>Shape:</strong> ${product.shape}</p>
+  <p><strong>Length:</strong> ${product.length}</p>
+  <p>${product.description}</p>
+ `;
 }
 function toggleAccordion(button){
  const item = button.closest('.accordion-item');
@@ -1244,59 +1254,41 @@ function stripePay(){
  window.open("https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK", "_blank");
 }
 const products = [
-{
-  name: "Golden French",
-  price: "€29",
-  image: "images/golden-french.webp",
- colors:["Pink","Nude"],
- shape:"Medium Almond",
- length:"Medium",
-  description: "A refined French manicure with golden details, designed for an elegant and timeless look."
+ {
+  name:"Golden French",
+  price:"€29",
+  image:"images/golden-french.webp",
+  colors:["Gold","Nude"],
+  shape:"Medium Almond",
+  length:"Medium",
+  description:"A refined French manicure with golden details, designed for an elegant and timeless look."
  },
  {
-  name: "Black Minimal",
-  price: "€29",
-  image: "images/black-minimal.webp",
- colors:["Pink","Nude"],
- shape:"Medium Almond",
- length:"Medium",
-  description: "A minimalist black nail design for a modern and sophisticated style."
+  name:"Black Minimal",
+  price:"€29",
+  image:"images/black-minimal.webp",
+  colors:["Black","Nude"],
+  shape:"Medium Almond",
+  length:"Medium",
+  description:"A minimalist black nail design for a modern and sophisticated style."
  },
  {
-  name: "Pearl White",
-  price: "€29",
-  image: "images/pearl-white.webp",
+  name:"Cup Cake",
+  price:"€20",
+  image:"images/cup-cake.webp",
   colors:["Pink","Nude"],
- shape:"Medium Almond",
- length:"Medium",
-  description: "A soft pearl white finish with a clean and luminous appearance."
+  shape:"Medium Almond",
+  length:"Medium",
+  description:"A sweet pink cupcake-inspired design with soft nude tones and crystal details."
  },
  {
-  name: "Rose Nude",
-  price: "€29",
-  image: "images/rose-nude.webp",
-   colors:["Pink","Nude"],
- shape:"Medium Almond",
- length:"Medium",
-  description: "A natural rose nude shade for a soft everyday manicure."
- },
- {
-  name: "Cup Cake",
-  price: "€20",
-  image: "images/cup-cake.webp",
-   colors:["Pink","Nude"],
- shape:"Medium Almond",
- length:"Medium",
-  description: "A sweet pink cupcake-inspired design with soft nude tones and delicate crystal details."
- },
- {
-  name: "Sweet Cream",
-  price: "€20",
-  image: "images/sweet-cream.webp",
- colors:["Pink","Nude"],
- shape:"Medium Almond",
- length:"Medium",
-  description: "A creamy pearl-white nail design inspired by soft whipped cream textures."
+  name:"Sweet Cream",
+  price:"€20",
+  image:"images/sweet-cream.webp",
+  colors:["Cream","Pearl White"],
+  shape:"Medium Almond",
+  length:"Medium",
+  description:"A creamy pearl-white nail design inspired by soft whipped cream textures."
  }
 ];
 
@@ -1306,32 +1298,12 @@ initHomeProductCarousel();
 
 products.forEach((p)=>{
  grid.innerHTML += `
- <div class="card" onclick="openProduct('${p.name}')">
+  <div class="card" onclick="openProduct('${p.name}')">
    <img src="${p.image}" alt="${p.name}" loading="lazy">
-
    <div class="card-content">
-     <h3>${p.name}</h3>
-
-     <p style="font-weight:bold;">
-       ${p.price}
-     </p>
-
-     <p style="font-size:12px;color:#8b6f67;margin:6px 0;">
-       Colors: ${p.colors.join(" / ")}
-     </p>
-
-     <p style="font-size:12px;color:#8b6f67;margin:6px 0;">
-       Shape: ${p.shape}
-     </p>
-
-     <p style="font-size:12px;color:#8b6f67;margin:6px 0;">
-       Length: ${p.length}
-     </p>
-
-     <p style="font-size:12px;color:#666;line-height:1.45;margin-top:8px;">
-       ${p.description}
-     </p>
+    <h3>${p.name}</h3>
+    <p>${p.price}</p>
    </div>
- </div>
+  </div>
  `;
 });
