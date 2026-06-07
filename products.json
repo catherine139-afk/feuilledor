@@ -75,9 +75,9 @@
     "name": "Cup Cake",
     "price": "€20",
     "images": [
-    "assets/products/FD005-1.png",
-    "assets/products/FD005-2.png",
-    "assets/products/FD005-3.png"
+    "assets/products/FD005-1.jpg",
+    "assets/products/FD005-2.jpg",
+    "assets/products/FD005-3.jpg"
   ],
     "colors": [
       "Pink",
