@@ -70,16 +70,16 @@
     "description": "A natural rose nude shade for a soft everyday manicure.",
     "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
   },
-  {
-    "id": "FD005",
-    "name": "Cup Cake",
-    "images": [
+{
+  "id": "FD005",
+  "name": "Cup Cake",
+  "images": [
     "assets/products/FD005-1.jpg",
     "assets/products/FD005-2.jpg",
     "assets/products/FD005-3.jpg"
   ],
-    "description": "A sweet pink cupcake-inspired design.",
-    "variants": [
+  "description": "A sweet pink cupcake-inspired design.",
+  "variants": [
     {
       "color": "Pink",
       "shape": "Almond",
@@ -87,7 +87,7 @@
       "price": "€25",
       "stripeLink": "https://buy.stripe.com/链接25"
     },
-   {
+    {
       "color": "Pink",
       "shape": "Almond",
       "length": "Short",
@@ -107,9 +107,9 @@
       "length": "Short",
       "price": "€25",
       "stripeLink": "https://buy.stripe.com/链接25"
-    },
-   ]
-  },
+    }
+  ]
+}
   {
     "id": "FD006",
     "name": "Sweet Cream",
