@@ -1225,11 +1225,6 @@ function closeMenu(){
  document.getElementById('nav').classList.remove('open');
  document.getElementById('hamburger').classList.remove('open');
 }
-function openProduct(name){
- go('product');
- document.getElementById('title').innerText = name;
- document.getElementById('desc').innerText = "Luxury press-on nails design, handcrafted for elegant everyday wear.";
-}
 function toggleAccordion(button){
  const item = button.closest('.accordion-item');
  item.classList.toggle('open');
@@ -1249,7 +1244,11 @@ const PRODUCTS_FALLBACK = [
   {
     "name": "Golden French",
     "price": "€29",
-    "image": "assets/products/golden-french.webp",
+    "image": [
+    "assets/products/FD001-1.jpg",
+    "assets/products/FD001-2.jpg",
+    "assets/products/FD001-3.jpg"
+  ],
     "colors": [
       "Pink",
       "Nude"
@@ -1258,15 +1257,16 @@ const PRODUCTS_FALLBACK = [
     "length": "Medium",
     "description": "A refined French manicure with golden details, designed for an elegant and timeless look.",
     "id": "FD001",
-    "gallery": [
-      "assets/products/golden-french.webp"
-    ],
     "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
   },
   {
     "name": "Black Minimal",
     "price": "€29",
-    "image": "assets/products/black-minimal.webp",
+    "image": [
+    "assets/products/FD002-1.jpg",
+    "assets/products/FD002-2.jpg",
+    "assets/products/FD002-3.jpg"
+  ],
     "colors": [
       "Pink",
       "Nude"
@@ -1275,15 +1275,16 @@ const PRODUCTS_FALLBACK = [
     "length": "Medium",
     "description": "A minimalist black nail design for a modern and sophisticated style.",
     "id": "FD002",
-    "gallery": [
-      "assets/products/black-minimal.webp"
-    ],
     "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
   },
   {
     "name": "Pearl White",
     "price": "€29",
-    "image": "assets/products/pearl-white.webp",
+    "image": [
+    "assets/products/FD003-1.jpg",
+    "assets/products/FD003-2.jpg",
+    "assets/products/FD003-3.jpg"
+  ],
     "colors": [
       "Pink",
       "Nude"
@@ -1292,15 +1293,16 @@ const PRODUCTS_FALLBACK = [
     "length": "Medium",
     "description": "A soft pearl white finish with a clean and luminous appearance.",
     "id": "FD003",
-    "gallery": [
-      "assets/products/pearl-white.webp"
-    ],
     "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
   },
   {
     "name": "Rose Nude",
     "price": "€29",
-    "image": "assets/products/rose-nude.webp",
+    "image": [
+    "assets/products/FD004-1.jpg",
+    "assets/products/FD004-2.jpg",
+    "assets/products/FD004-3.jpg"
+  ],
     "colors": [
       "Pink",
       "Nude"
@@ -1309,15 +1311,16 @@ const PRODUCTS_FALLBACK = [
     "length": "Medium",
     "description": "A natural rose nude shade for a soft everyday manicure.",
     "id": "FD004",
-    "gallery": [
-      "assets/products/rose-nude.webp"
-    ],
     "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
   },
   {
     "name": "Cup Cake",
     "price": "€20",
-    "image": "assets/products/cup-cake.webp",
+    "image": [
+    "assets/products/FD005-1.jpg",
+    "assets/products/FD005-2.jpg",
+    "assets/products/FD005-3.jpg"
+  ],
     "colors": [
       "Pink",
       "Nude"
@@ -1326,15 +1329,16 @@ const PRODUCTS_FALLBACK = [
     "length": "Medium",
     "description": "A sweet pink cupcake-inspired design with soft nude tones and delicate crystal details.",
     "id": "FD005",
-    "gallery": [
-      "assets/products/cup-cake.webp"
-    ],
     "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
   },
   {
     "name": "Sweet Cream",
     "price": "€20",
-    "image": "assets/products/sweet-cream.webp",
+    "image": [
+    "assets/products/FD006-1.jpg",
+    "assets/products/FD006-2.jpg",
+    "assets/products/FD006-3.jpg"
+  ],
     "colors": [
       "Pink",
       "Nude"
@@ -1343,9 +1347,6 @@ const PRODUCTS_FALLBACK = [
     "length": "Medium",
     "description": "A creamy pearl-white nail design inspired by soft whipped cream textures.",
     "id": "FD006",
-    "gallery": [
-      "assets/products/sweet-cream.webp"
-    ],
     "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
   }
 ];
@@ -1374,12 +1375,22 @@ function safeText(value){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[char];
  });
 }
+function getProductImages(product){
+ if(product.images && product.images.length) return product.images;
+ if(product.gallery && product.gallery.length) return product.gallery;
+ if(product.image) return [product.image];
+ return [];
+}
 
+function getMainImage(product){
+ const images = getProductImages(product);
+ return images[0] || '';
+}
 function renderProducts(){
  if(!grid) return;
  grid.innerHTML = products.map((p, index)=>`
  <div class="card" onclick="openProductByIndex(${index})">
-   <img src="${safeText(p.image)}" alt="${safeText(p.name)}" loading="lazy">
+   <img src="${safeText(getMainImage(p))}" alt="${safeText(p.name)}" loading="lazy">
    <div class="card-content">
      <h3>${safeText(p.name)}</h3>
      <p style="font-weight:bold;">${safeText(p.price)}</p>
@@ -1405,8 +1416,8 @@ function openProductByIndex(index){
  if(mobileBtn) mobileBtn.innerText = `Buy Now · ${product.price || ''}`;
  const gallery = document.querySelector('#product .product-gallery');
  if(gallery){
-  const galleryImages = product.gallery && product.gallery.length ? product.gallery : [product.image, product.image, product.image];
-  gallery.innerHTML = galleryImages.map(src=>`<img src="${safeText(src)}" alt="${safeText(product.name)} image">`).join('');
+  const galleryImages = getProductImages(product);
+gallery.innerHTML = galleryImages.map(src=>`<img src="${safeText(src)}" alt="${safeText(product.name)} image">`).join('');
  }
 }
 
