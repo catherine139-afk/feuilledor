@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Golden French",
+    "price": "€29",
+    "image": "assets/products/golden-french.webp",
+    "colors": [
+      "Pink",
+      "Nude"
+    ],
+    "shape": "Medium Almond",
+    "length": "Medium",
+    "description": "A refined French manicure with golden details, designed for an elegant and timeless look.",
+    "id": "FD001",
+    "gallery": [
+      "assets/products/golden-french.webp"
+    ],
+    "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+  },
+  {
+    "name": "Black Minimal",
+    "price": "€29",
+    "image": "assets/products/black-minimal.webp",
+    "colors": [
+      "Pink",
+      "Nude"
+    ],
+    "shape": "Medium Almond",
+    "length": "Medium",
+    "description": "A minimalist black nail design for a modern and sophisticated style.",
+    "id": "FD002",
+    "gallery": [
+      "assets/products/black-minimal.webp"
+    ],
+    "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+  },
+  {
+    "name": "Pearl White",
+    "price": "€29",
+    "image": "assets/products/pearl-white.webp",
+    "colors": [
+      "Pink",
+      "Nude"
+    ],
+    "shape": "Medium Almond",
+    "length": "Medium",
+    "description": "A soft pearl white finish with a clean and luminous appearance.",
+    "id": "FD003",
+    "gallery": [
+      "assets/products/pearl-white.webp"
+    ],
+    "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+  },
+  {
+    "name": "Rose Nude",
+    "price": "€29",
+    "image": "assets/products/rose-nude.webp",
+    "colors": [
+      "Pink",
+      "Nude"
+    ],
+    "shape": "Medium Almond",
+    "length": "Medium",
+    "description": "A natural rose nude shade for a soft everyday manicure.",
+    "id": "FD004",
+    "gallery": [
+      "assets/products/rose-nude.webp"
+    ],
+    "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+  },
+  {
+    "name": "Cup Cake",
+    "price": "€20",
+    "image": "assets/products/cup-cake.webp",
+    "colors": [
+      "Pink",
+      "Nude"
+    ],
+    "shape": "Medium Almond",
+    "length": "Medium",
+    "description": "A sweet pink cupcake-inspired design with soft nude tones and delicate crystal details.",
+    "id": "FD005",
+    "gallery": [
+      "assets/products/cup-cake.webp"
+    ],
+    "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+  },
+  {
+    "name": "Sweet Cream",
+    "price": "€20",
+    "image": "assets/products/sweet-cream.webp",
+    "colors": [
+      "Pink",
+      "Nude"
+    ],
+    "shape": "Medium Almond",
+    "length": "Medium",
+    "description": "A creamy pearl-white nail design inspired by soft whipped cream textures.",
+    "id": "FD006",
+    "gallery": [
+      "assets/products/sweet-cream.webp"
+    ],
+    "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+  }
+]
