@@ -1469,11 +1469,16 @@ function openProductByIndex(index){
  const productInfo = document.querySelector("#product .product-info");
  let variantBox = document.getElementById("variantOptions");
 
- if(!variantBox && productInfo){
+if(!variantBox && productInfo){
   variantBox = document.createElement("div");
   variantBox.id = "variantOptions";
   const accordion = productInfo.querySelector(".accordion");
-  productInfo.insertBefore(variantBox, accordion);
+
+  if(accordion){
+   productInfo.insertBefore(variantBox, accordion);
+  }else{
+   productInfo.appendChild(variantBox);
+  }
  }
 
  if(variantBox){
