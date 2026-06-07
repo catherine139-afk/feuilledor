@@ -1361,11 +1361,12 @@ async function loadProducts(){
   const response = await fetch('products.json?v=3', {cache:'no-store'});
   if(!response.ok) throw new Error('products.json not found');
   products = await response.json();
-}catch(error){
- console.error("products.json 读取失败：", error);
- alert("products.json 读取失败，请检查 JSON 格式或路径");
- products = [];
-}
+ }catch(error){
+  /* 本地直接双击打开 HTML 时，部分浏览器会禁止读取 products.json。
+     所以这里保留一份 fallback，保证预览不空白。
+     正式上线后会优先读取 products.json。 */
+  products = PRODUCTS_FALLBACK;
+ }
  renderProducts();
 }
 
