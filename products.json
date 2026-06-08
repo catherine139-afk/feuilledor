@@ -89,82 +89,46 @@
       }
     ]
   },
-{
-  "id": "FD005",
-  "name": "Cup Cake",
-  "images": [
-    "assets/products/FD005-1.jpg",
-    "assets/products/FD005-2.jpg",
-    "assets/products/FD005-3.jpg"
-  ],
-  "description": "A sweet pink cupcake-inspired design.",
-  "variants": [
-    {
-      "color": "Pink",
-      "shape": "Almond",
-      "length": "Medium",
-      "custom": "Standard",
-      "price": "€25",
-      "stripeLink": "https://buy.stripe.com/standard-link"
-    },
-    {
-      "color": "Pink",
-      "shape": "Almond",
-      "length": "Medium",
-      "custom": "Custom",
-      "price": "€25",
-      "stripeLink": "https://buy.stripe.com/custom-link"
-    },
-    {
-      "color": "Pink",
-      "shape": "Almond",
-      "length": "Short",
-      "custom": "Standard",
-      "price": "€25",
-      "stripeLink": "https://buy.stripe.com/standard-link"
-    },
-    {
-      "color": "Pink",
-      "shape": "Almond",
-      "length": "Short",
-      "custom": "Custom",
-      "price": "€25",
-      "stripeLink": "https://buy.stripe.com/custom-link"
-    },
-    {
-      "color": "Pink",
-      "shape": "Square",
-      "length": "Medium",
-      "custom": "Standard",
-      "price": "€25",
-      "stripeLink": "https://buy.stripe.com/standard-link"
-    },
-    {
-      "color": "Pink",
-      "shape": "Square",
-      "length": "Medium",
-      "custom": "Custom",
-      "price": "€25",
-      "stripeLink": "https://buy.stripe.com/custom-link"
-    },
-    {
-      "color": "Pink",
-      "shape": "Square",
-      "length": "Short",
-      "custom": "Standard",
-      "price": "€25",
-      "stripeLink": "https://buy.stripe.com/standard-link"
-    },
-    {
-      "color": "Pink",
-      "shape": "Square",
-      "length": "Short",
-      "custom": "Custom",
-      "price": "€25",
-      "stripeLink": "https://buy.stripe.com/custom-link"
-    }
-  ]
-}
+  {
+    "id": "FD005",
+    "name": "Cup Cake",
+    "images": [
+      "assets/products/FD005-1.jpg",
+      "assets/products/FD005-2.jpg",
+      "assets/products/FD005-3.jpg"
+    ],
+    "description": "A sweet pink cupcake-inspired design.",
+    "variants": [
+      {
+        "color": "Pink",
+        "shape": "Almond",
+        "length": "Medium",
+        "price": "€25",
+        "stripeLink": "https://buy.stripe.com/standard-link"
+      },
+      {
+        "color": "Pink",
+        "shape": "Almond",
+        "length": "Short",
+        "price": "€25",
+        "stripeLink": "https://buy.stripe.com/standard-link"
+      },
+      {
+        "color": "Pink",
+        "shape": "Square",
+        "length": "Medium",
+        "price": "€25",
+        "stripeLink": "https://buy.stripe.com/standard-link"
+      },
+      {
+        "color": "Pink",
+        "shape": "Square",
+        "length": "Short",
+        "price": "€25",
+        "stripeLink": "https://buy.stripe.com/standard-link"
+      }
+    ]
+  },
   {
     "id": "FD006",
     "name": "Sweet Cream",
