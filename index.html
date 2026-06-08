@@ -1483,18 +1483,37 @@ if(!variantBox && productInfo){
   }
  }
 
- if(variantBox){
-  if(product.variants && product.variants.length){
-   variantBox.innerHTML = `
-    ${renderVariantSelect("variantColor", "Color", uniqueValues(product.variants, "color"))}
-    ${renderVariantSelect("variantShape", "Shape", uniqueValues(product.variants, "shape"))}
-    ${renderVariantSelect("variantLength", "Length", uniqueValues(product.variants, "length"))}
-    ${renderVariantSelect("variantPersonalisation", "Personnalisation", uniqueValues(product.variants, "personalisation"))}
-   `;
-  }else{
-   variantBox.innerHTML = "";
-  }
+if(variantBox){
+ if(product.variants && product.variants.length){
+  variantBox.innerHTML = `
+   ${renderVariantSelect(
+      "variantColor",
+      "Color",
+      uniqueValues(product.variants,"color")
+   )}
+
+   ${renderVariantSelect(
+      "variantShape",
+      "Shape",
+      uniqueValues(product.variants,"shape")
+   )}
+
+   ${renderVariantSelect(
+      "variantLength",
+      "Length",
+      uniqueValues(product.variants,"length")
+   )}
+
+   ${renderVariantSelect(
+      "variantPersonalisation",
+      "Personnalisation",
+      uniqueValues(product.variants,"personalisation")
+   )}
+  `;
+ }else{
+  variantBox.innerHTML = "";
  }
+}
 
  updateSelectedVariant();
 }
