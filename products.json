@@ -14,7 +14,16 @@
         "shape": "Almond",
         "length": "Medium",
         "price": "€29",
-        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Standard"
+      },
+      {
+        "color": "Pink",
+        "shape": "Almond",
+        "length": "Medium",
+        "price": "€69",
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Personnalisé"
       }
     ]
   },
@@ -33,7 +42,16 @@
         "shape": "Almond",
         "length": "Medium",
         "price": "€29",
-        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Standard"
+      },
+      {
+        "color": "Pink",
+        "shape": "Almond",
+        "length": "Medium",
+        "price": "€69",
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Personnalisé"
       }
     ]
   },
@@ -52,7 +70,16 @@
         "shape": "Almond",
         "length": "Medium",
         "price": "€29",
-        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Standard"
+      },
+      {
+        "color": "Pink",
+        "shape": "Almond",
+        "length": "Medium",
+        "price": "€69",
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Personnalisé"
       }
     ]
   },
@@ -71,21 +98,48 @@
         "shape": "Almond",
         "length": "Medium",
         "price": "€29",
-        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Standard"
+      },
+      {
+        "color": "Nude",
+        "shape": "Almond",
+        "length": "Medium",
+        "price": "€69",
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Personnalisé"
       },
       {
         "color": "Nude",
         "shape": "Almond",
         "length": "Short",
         "price": "€29",
-        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Standard"
+      },
+      {
+        "color": "Nude",
+        "shape": "Almond",
+        "length": "Short",
+        "price": "€69",
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Personnalisé"
       },
       {
         "color": "Nude",
         "shape": "Square",
         "length": "Medium",
         "price": "€29",
-        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Standard"
+      },
+      {
+        "color": "Nude",
+        "shape": "Square",
+        "length": "Medium",
+        "price": "€69",
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Personnalisé"
       }
     ]
   },
@@ -112,7 +166,7 @@
         "shape": "Almond",
         "length": "Medium",
         "personalisation": "Personnalisé",
-        "price": "€35",
+        "price": "€65",
         "stripeLink": "https://buy.stripe.com/personnalise-link"
       },
       {
@@ -128,7 +182,7 @@
         "shape": "Almond",
         "length": "Short",
         "personalisation": "Personnalisé",
-        "price": "€35",
+        "price": "€65",
         "stripeLink": "https://buy.stripe.com/personnalise-link"
       },
       {
@@ -144,7 +198,7 @@
         "shape": "Square",
         "length": "Medium",
         "personalisation": "Personnalisé",
-        "price": "€35",
+        "price": "€65",
         "stripeLink": "https://buy.stripe.com/personnalise-link"
       },
       {
@@ -160,7 +214,7 @@
         "shape": "Square",
         "length": "Short",
         "personalisation": "Personnalisé",
-        "price": "€35",
+        "price": "€65",
         "stripeLink": "https://buy.stripe.com/personnalise-link"
       }
     ]
@@ -180,7 +234,16 @@
         "shape": "Almond",
         "length": "Medium",
         "price": "€20",
-        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK"
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Standard"
+      },
+      {
+        "color": "Pink",
+        "shape": "Almond",
+        "length": "Medium",
+        "price": "€60",
+        "stripeLink": "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK",
+        "personalisation": "Personnalisé"
       }
     ]
   }
