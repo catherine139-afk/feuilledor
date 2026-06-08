@@ -1358,7 +1358,7 @@ loadProducts();
 
 async function loadProducts(){
  try{
-  const response = await fetch('products.json?v=11', {cache:'no-store'});
+  const response = await fetch('products.json?v=12', {cache:'no-store'});
   if(!response.ok) throw new Error('products.json not found');
   products = await response.json();
  }catch(error){
@@ -1428,11 +1428,13 @@ function findMatchingVariant(product){
  const color = document.getElementById("variantColor")?.value;
  const shape = document.getElementById("variantShape")?.value;
  const length = document.getElementById("variantLength")?.value;
+ const personalisation = document.getElementById("variantPersonalisation")?.value;
 
  return product.variants.find(v =>
   (!color || v.color === color) &&
   (!shape || v.shape === shape) &&
-  (!length || v.length === length)
+  (!length || v.length === length) &&
+  (!personalisation || v.personalisation === personalisation)
  ) || product.variants[0];
 }
 
@@ -1487,6 +1489,7 @@ if(!variantBox && productInfo){
     ${renderVariantSelect("variantColor", "Color", uniqueValues(product.variants, "color"))}
     ${renderVariantSelect("variantShape", "Shape", uniqueValues(product.variants, "shape"))}
     ${renderVariantSelect("variantLength", "Length", uniqueValues(product.variants, "length"))}
+    ${renderVariantSelect("variantPersonalisation", "Personnalisation", uniqueValues(product.variants, "personalisation"))}
    `;
   }else{
    variantBox.innerHTML = "";
