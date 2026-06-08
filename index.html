@@ -996,6 +996,107 @@ margin:0 auto;
 border-radius:18px;
 }
 
+
+/* ===== CART ===== */
+.cart-icon{
+ position:relative;
+}
+#cartCount{
+ position:absolute;
+ top:-8px;
+ right:-12px;
+ min-width:18px;
+ height:18px;
+ padding:0 5px;
+ border-radius:999px;
+ background:#000;
+ color:#fff;
+ font-size:11px;
+ line-height:18px;
+ text-align:center;
+ font-family:Arial, Helvetica, sans-serif;
+}
+.cart-layout{
+ max-width:900px;
+ margin:0 auto;
+}
+.cart-items{
+ display:grid;
+ gap:16px;
+ margin:24px 0;
+}
+.cart-item{
+ display:grid;
+ grid-template-columns:82px 1fr auto;
+ gap:16px;
+ align-items:center;
+ border:1px solid #eee;
+ border-radius:16px;
+ padding:14px;
+ background:#fff;
+}
+.cart-item img{
+ width:82px;
+ height:82px;
+ object-fit:cover;
+ border-radius:12px;
+ background:#f3f3f3;
+}
+.cart-item h3{
+ margin:0 0 6px;
+ font-size:16px;
+}
+.cart-item p{
+ margin:3px 0;
+ color:#666;
+ font-size:13px;
+}
+.cart-actions{
+ display:flex;
+ gap:10px;
+ flex-wrap:wrap;
+ justify-content:flex-end;
+}
+.cart-small-btn{
+ border:1px solid #ddd;
+ background:#fff;
+ color:#000;
+ border-radius:999px;
+ padding:9px 14px;
+ cursor:pointer;
+}
+.cart-total{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ border-top:1px solid #ddd;
+ padding-top:20px;
+ margin-top:18px;
+ font-size:20px;
+}
+.cart-empty{
+ text-align:center;
+ color:#666;
+ padding:46px 0;
+}
+.add-cart-btn{
+ margin-top:12px;
+ width:100%;
+}
+@media(max-width:768px){
+ .cart-item{
+  grid-template-columns:64px 1fr;
+ }
+ .cart-item img{
+  width:64px;
+  height:64px;
+ }
+ .cart-actions{
+  grid-column:1 / -1;
+  justify-content:flex-start;
+ }
+}
+
 </style>
 </head>
 <body>
@@ -1013,7 +1114,7 @@ border-radius:18px;
  </nav>
  <div class="nav-icons">
  <button class="icon-btn search-icon" aria-label="Search">⌕</button>
- <button class="icon-btn" aria-label="Cart">♧</button>
+ <button class="icon-btn cart-icon" aria-label="Cart" onclick="go('cart'); renderCart();">♧<span id="cartCount">0</span></button>
  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
  <span></span><span></span><span></span>
  </button>
@@ -1107,6 +1208,7 @@ border-radius:18px;
  <p id="desc">Luxury press-on nails design, handcrafted for elegant everyday wear.</p>
  <p class="price">€29</p>
  <button class="btn black buy-main" onclick="stripePay()">Buy Now with Stripe</button>
+ <button class="btn add-cart-btn" onclick="addToCart()">Add to Cart</button>
  <div class="accordion">
  <div class="accordion-item open">
  <button class="accordion-title" onclick="toggleAccordion(this)">Options <span>+</span></button>
@@ -1136,6 +1238,25 @@ border-radius:18px;
  </div>
  </div>
  </section>
+ <section id="cart" class="page">
+ <div class="cart-layout">
+  <h2>Shopping Cart</h2>
+  <div id="cartItems" class="cart-items"></div>
+  <div class="cart-total">
+   <strong>Total</strong>
+   <strong id="cartTotal">€0</strong>
+  </div>
+  <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;">
+   <button class="btn black" onclick="checkoutCart()">Checkout</button>
+   <button class="btn" onclick="clearCart()">Clear Cart</button>
+   <button class="btn" onclick="go('shop')">Continue Shopping</button>
+  </div>
+  <p style="margin-top:16px;color:#666;font-size:13px;line-height:1.6;">
+   Note: this is a static GitHub Pages cart. Stripe payment links are still connected item by item.
+  </p>
+ </div>
+ </section>
+
  <section id="giftcard" class="page">
  <h2>Gift Card</h2>
  <p>Digital gift card available for all collections.</p>
@@ -1178,7 +1299,9 @@ border-radius:18px;
 <script>
 function go(id){
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
- document.getElementById(id).classList.add('active');
+ const page = document.getElementById(id);
+ if(page) page.classList.add('active');
+ if(id === 'cart') renderCart();
  closeMenu();
  window.scrollTo({top:0, behavior:'smooth'});
 }
@@ -1352,10 +1475,11 @@ let currentProduct = null;
 
 initHomeProductCarousel();
 loadProducts();
+updateCartCount();
 
 async function loadProducts(){
  try{
-  const response = await fetch('products.json?v=18', {cache:'no-store'});
+  const response = await fetch('products.json?v=19', {cache:'no-store'});
   if(!response.ok) throw new Error('products.json not found');
   products = await response.json();
  }catch(error){
@@ -1527,6 +1651,165 @@ function stripePay(){
   "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK";
 
  window.open(link, "_blank");
+}
+
+function parsePrice(price){
+ const value = String(price || "").replace(",", ".").replace(/[^\d.]/g, "");
+ return Number(value || 0);
+}
+
+function formatPrice(value){
+ return "€" + Number(value || 0).toFixed(0);
+}
+
+function getCart(){
+ try{
+  return JSON.parse(localStorage.getItem("fdCart") || "[]");
+ }catch(error){
+  return [];
+ }
+}
+
+function saveCart(cart){
+ localStorage.setItem("fdCart", JSON.stringify(cart));
+ updateCartCount();
+}
+
+function updateCartCount(){
+ const count = getCart().reduce((sum, item) => sum + (item.quantity || 1), 0);
+ const countEl = document.getElementById("cartCount");
+ if(countEl) countEl.innerText = count;
+}
+
+function getSelectedOptionsText(){
+ const variant = selectedVariant || {};
+ const parts = [];
+
+ if(variant.color) parts.push(`Color: ${variant.color}`);
+ if(variant.shape) parts.push(`Shape: ${variant.shape}`);
+ if(variant.length) parts.push(`Length: ${variant.length}`);
+ if(variant.personalisation) parts.push(`Personnalisation: ${variant.personalisation}`);
+
+ return parts.join(" · ");
+}
+
+function addToCart(){
+ if(!currentProduct) return;
+
+ const variant = selectedVariant || currentProduct.variants?.[0] || {};
+ const image = getMainImage(currentProduct);
+ const price = variant.price || currentProduct.price || "";
+ const stripeLink =
+  variant.stripeLink ||
+  currentProduct.stripeLink ||
+  "https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK";
+
+ const variantKey = [
+  currentProduct.id || currentProduct.name,
+  variant.color || "",
+  variant.shape || "",
+  variant.length || "",
+  variant.personalisation || "",
+  price
+ ].join("|");
+
+ const cart = getCart();
+ const existing = cart.find(item => item.variantKey === variantKey);
+
+ if(existing){
+  existing.quantity += 1;
+ }else{
+  cart.push({
+   variantKey,
+   productId: currentProduct.id || "",
+   name: currentProduct.name || "",
+   image,
+   options: getSelectedOptionsText(),
+   price,
+   stripeLink,
+   quantity: 1
+  });
+ }
+
+ saveCart(cart);
+ alert("Added to cart");
+}
+
+function removeCartItem(variantKey){
+ const cart = getCart().filter(item => item.variantKey !== variantKey);
+ saveCart(cart);
+ renderCart();
+}
+
+function changeCartQuantity(variantKey, delta){
+ const cart = getCart();
+ const item = cart.find(item => item.variantKey === variantKey);
+ if(!item) return;
+
+ item.quantity = Math.max(1, (item.quantity || 1) + delta);
+ saveCart(cart);
+ renderCart();
+}
+
+function clearCart(){
+ saveCart([]);
+ renderCart();
+}
+
+function renderCart(){
+ const cartItems = document.getElementById("cartItems");
+ const cartTotal = document.getElementById("cartTotal");
+ if(!cartItems || !cartTotal) return;
+
+ const cart = getCart();
+
+ if(!cart.length){
+  cartItems.innerHTML = `<div class="cart-empty">Your cart is empty.</div>`;
+  cartTotal.innerText = "€0";
+  return;
+ }
+
+ let total = 0;
+
+ cartItems.innerHTML = cart.map(item => {
+  const quantity = item.quantity || 1;
+  const lineTotal = parsePrice(item.price) * quantity;
+  total += lineTotal;
+
+  return `
+   <div class="cart-item">
+    <img src="${safeText(item.image || "")}" alt="${safeText(item.name)}">
+    <div>
+     <h3>${safeText(item.name)}</h3>
+     <p>${safeText(item.options || "")}</p>
+     <p>${safeText(item.price)} × ${quantity}</p>
+    </div>
+    <div class="cart-actions">
+     <button class="cart-small-btn" onclick="changeCartQuantity('${safeText(item.variantKey)}', -1)">−</button>
+     <button class="cart-small-btn" onclick="changeCartQuantity('${safeText(item.variantKey)}', 1)">+</button>
+     <button class="cart-small-btn" onclick="window.open('${safeText(item.stripeLink)}', '_blank')">Pay</button>
+     <button class="cart-small-btn" onclick="removeCartItem('${safeText(item.variantKey)}')">Remove</button>
+    </div>
+   </div>
+  `;
+ }).join("");
+
+ cartTotal.innerText = formatPrice(total);
+}
+
+function checkoutCart(){
+ const cart = getCart();
+
+ if(!cart.length){
+  alert("Your cart is empty.");
+  return;
+ }
+
+ const firstPayable = cart.find(item => item.stripeLink);
+ if(firstPayable){
+  window.open(firstPayable.stripeLink, "_blank");
+  alert("Because this is a static GitHub Pages cart, Stripe opens one payment link at a time. Use each item’s Pay button for the other items.");
+ }
 }
 </script>
 </body>
