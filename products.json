@@ -99,36 +99,74 @@
     ],
     "description": "A sweet pink cupcake-inspired design.",
     "variants": [
-      {
-        "color": "Pink",
-        "shape": "Almond",
-        "length": "Medium",
-        "price": "€25",
-        "stripeLink": "https://buy.stripe.com/standard-link"
-      },
-      {
-        "color": "Pink",
-        "shape": "Almond",
-        "length": "Short",
-        "price": "€25",
-        "stripeLink": "https://buy.stripe.com/standard-link"
-      },
-      {
-        "color": "Pink",
-        "shape": "Square",
-        "length": "Medium",
-        "price": "€25",
-        "stripeLink": "https://buy.stripe.com/standard-link"
-      },
-      {
-        "color": "Pink",
-        "shape": "Square",
-        "length": "Short",
-        "price": "€25",
-        "stripeLink": "https://buy.stripe.com/standard-link"
-      }
-    ]
+  {
+    "color": "Pink",
+    "shape": "Almond",
+    "length": "Medium",
+    "personalisation": "Standard",
+    "price": "€25",
+    "stripeLink": "https://buy.stripe.com/standard-link"
   },
+  {
+    "color": "Pink",
+    "shape": "Almond",
+    "length": "Medium",
+    "personalisation": "Personnalisé",
+    "price": "€35",
+    "stripeLink": "https://buy.stripe.com/personnalise-link"
+  },
+
+  {
+    "color": "Pink",
+    "shape": "Almond",
+    "length": "Short",
+    "personalisation": "Standard",
+    "price": "€25",
+    "stripeLink": "https://buy.stripe.com/standard-link"
+  },
+  {
+    "color": "Pink",
+    "shape": "Almond",
+    "length": "Short",
+    "personalisation": "Personnalisé",
+    "price": "€35",
+    "stripeLink": "https://buy.stripe.com/personnalise-link"
+  },
+
+  {
+    "color": "Pink",
+    "shape": "Square",
+    "length": "Medium",
+    "personalisation": "Standard",
+    "price": "€25",
+    "stripeLink": "https://buy.stripe.com/standard-link"
+  },
+  {
+    "color": "Pink",
+    "shape": "Square",
+    "length": "Medium",
+    "personalisation": "Personnalisé",
+    "price": "€35",
+    "stripeLink": "https://buy.stripe.com/personnalise-link"
+  },
+
+  {
+    "color": "Pink",
+    "shape": "Square",
+    "length": "Short",
+    "personalisation": "Standard",
+    "price": "€25",
+    "stripeLink": "https://buy.stripe.com/standard-link"
+  },
+  {
+    "color": "Pink",
+    "shape": "Square",
+    "length": "Short",
+    "personalisation": "Personnalisé",
+    "price": "€35",
+    "stripeLink": "https://buy.stripe.com/personnalise-link"
+  }
+]
   {
     "id": "FD006",
     "name": "Sweet Cream",
