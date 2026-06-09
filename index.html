@@ -1241,13 +1241,10 @@ border-radius:18px;
    <strong id="cartTotal">€0</strong>
   </div>
   <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;">
-   <button class="btn black" onclick="checkoutPanier()">Payer le panier</button>
+   <button class="btn black" onclick="checkoutPanier()">Passer au paiement</button>
    <button class="btn" onclick="clearPanier()">Vider le panier</button>
    <button class="btn" onclick="go('shop')">Continuer mes achats</button>
   </div>
-  <p style="margin-top:16px;color:#666;font-size:13px;line-height:1.6;">
-   Note: this is a static GitHub Pages cart. Stripe payment links are still connected item by item.
-  </p>
  </div>
  </section>
 
@@ -1291,7 +1288,7 @@ border-radius:18px;
  <button onclick="stripePay()">Acheter maintenant · €29</button>
 </div>
 <script>
-const CHECKOUT_ENDPOINT = "https://YOUR-VERCEL-PROJECT.vercel.app/api/create-checkout-session";
+const CHECKOUT_ENDPOINT = "https://feuilledor.vercel.app/api/create-checkout-session";
 function go(id){
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
  const page = document.getElementById(id);
@@ -1470,7 +1467,7 @@ updatePanierCount();
 
 async function loadProducts(){
  try{
-  const response = await fetch('products.json?v=25', {cache:'no-store'});
+  const response = await fetch('products.json?v=26', {cache:'no-store'});
   if(!response.ok) throw new Error('products.json not found');
   products = await response.json();
  }catch(error){
@@ -1778,7 +1775,6 @@ function renderCart(){
     <div class="cart-actions">
      <button class="cart-small-btn" onclick="changePanierQuantité('${safeText(item.variantKey)}', -1)">−</button>
      <button class="cart-small-btn" onclick="changePanierQuantité('${safeText(item.variantKey)}', 1)">+</button>
-     <button class="cart-small-btn" onclick="window.open('${safeText(item.stripeLink)}', '_blank')">Pay</button>
      <button class="cart-small-btn" onclick="removePanierItem('${safeText(item.variantKey)}')">Supprimer</button>
     </div>
    </div>
@@ -1788,22 +1784,9 @@ function renderCart(){
  cartTotal.innerText = formatPrice(total);
 }
 
-function checkoutPanier(){
+async function checkoutPanier(){
  const cart = getPanier();
 
- if(!cart.length){
-  alert("Votre panier est vide.");
-  return;
- }
-
- const firstPayable = cart.find(item => item.stripeLink);
- if(firstPayable){
-  window.open(firstPayable.stripeLink, "_blank");
-  alert("Because this is a static GitHub Pages cart, Stripe opens one payment link at a time. Use each item’s Pay button for the other items.");
- }
-}
-
-async function checkoutCart(){
  if(!cart || !cart.length){
   alert("Votre panier est vide.");
   return;
@@ -1833,7 +1816,7 @@ async function checkoutCart(){
   }
 
   if(!data.url){
-   throw new Error("Lien Stripe Payer le panier manquant.");
+   throw new Error("Lien Stripe Checkout manquant.");
   }
 
   window.location.href = data.url;
@@ -1844,6 +1827,10 @@ async function checkoutCart(){
    checkoutBtn.innerText = "Payer le panier";
   }
  }
+}
+
+function checkoutCart(){
+ checkoutPanier();
 }
 </script>
 </body>
