@@ -1114,7 +1114,7 @@ border-radius:18px;
  </nav>
  <div class="nav-icons">
  <button class="icon-btn search-icon" aria-label="Recherche">⌕</button>
- <button class="icon-btn cart-icon" aria-label="Panier" onclick="go('cart'); renderPanier();">♧<span id="cartCount">0</span></button>
+ <button class="icon-btn cart-icon" aria-label="Panier" onclick="go('cart'); renderCart();">♧<span id="cartCount">0</span></button>
  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
  <span></span><span></span><span></span>
  </button>
@@ -1241,7 +1241,7 @@ border-radius:18px;
    <strong id="cartTotal">€0</strong>
   </div>
   <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;">
-   <button class="btn black" onclick="checkoutPanier()">Passer au paiement</button>
+   <button class="btn black" onclick="checkoutPanier()">Payer le panier</button>
    <button class="btn" onclick="clearPanier()">Vider le panier</button>
    <button class="btn" onclick="go('shop')">Continuer mes achats</button>
   </div>
@@ -1291,11 +1291,12 @@ border-radius:18px;
  <button onclick="stripePay()">Acheter maintenant · €29</button>
 </div>
 <script>
+const CHECKOUT_ENDPOINT = "https://YOUR-VERCEL-PROJECT.vercel.app/api/create-checkout-session";
 function go(id){
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
  const page = document.getElementById(id);
  if(page) page.classList.add('active');
- if(id === 'cart') renderPanier();
+ if(id === 'cart') renderCart();
  closeMenu();
  window.scrollTo({top:0, behavior:'smooth'});
 }
@@ -1344,13 +1345,9 @@ function toggleAccordion(button){
  item.classList.toggle('open');
 }
 function stripePay(){
- /*
- Stripe 接入说明：
- 1. 正式上线时，请把下面的链接替换成你的 Stripe Payment Link。
- 2. 推荐在 Stripe 后台创建产品和价格，然后复制 Payment Link。
- 3. 不建议直接在前端暴露 Secret Key。
- */
- window.open("https://buy.stripe.com/test_REPLACE_WITH_YOUR_PAYMENT_LINK", "_blank");
+ addToCart();
+ go("cart");
+ renderCart();
 }
 
 let products = [];
@@ -1473,7 +1470,7 @@ updatePanierCount();
 
 async function loadProducts(){
  try{
-  const response = await fetch('products.json?v=24', {cache:'no-store'});
+  const response = await fetch('products.json?v=25', {cache:'no-store'});
   if(!response.ok) throw new Error('products.json not found');
   products = await response.json();
  }catch(error){
@@ -1732,7 +1729,7 @@ function addToPanier(){
 function removePanierItem(variantKey){
  const cart = getPanier().filter(item => item.variantKey !== variantKey);
  savePanier(cart);
- renderPanier();
+ renderCart();
 }
 
 function changePanierQuantité(variantKey, delta){
@@ -1742,15 +1739,15 @@ function changePanierQuantité(variantKey, delta){
 
  item.quantity = Math.max(1, (item.quantity || 1) + delta);
  savePanier(cart);
- renderPanier();
+ renderCart();
 }
 
 function clearPanier(){
  savePanier([]);
- renderPanier();
+ renderCart();
 }
 
-function renderPanier(){
+function renderCart(){
  const cartItems = document.getElementById("cartItems");
  const cartTotal = document.getElementById("cartTotal");
  if(!cartItems || !cartTotal) return;
@@ -1803,6 +1800,49 @@ function checkoutPanier(){
  if(firstPayable){
   window.open(firstPayable.stripeLink, "_blank");
   alert("Because this is a static GitHub Pages cart, Stripe opens one payment link at a time. Use each item’s Pay button for the other items.");
+ }
+}
+
+async function checkoutCart(){
+ if(!cart || !cart.length){
+  alert("Votre panier est vide.");
+  return;
+ }
+
+ const checkoutBtn = document.getElementById("checkoutBtn");
+ if(checkoutBtn){
+  checkoutBtn.disabled = true;
+  checkoutBtn.innerText = "Redirection vers le paiement...";
+ }
+
+ try{
+  const response = await fetch(CHECKOUT_ENDPOINT, {
+   method: "POST",
+   headers: {
+    "Content-Type": "application/json"
+   },
+   body: JSON.stringify({
+    items: cart
+   })
+  });
+
+  const data = await response.json();
+
+  if(!response.ok){
+   throw new Error(data.error || "Erreur lors de la création du paiement.");
+  }
+
+  if(!data.url){
+   throw new Error("Lien Stripe Payer le panier manquant.");
+  }
+
+  window.location.href = data.url;
+ }catch(error){
+  alert("Impossible de lancer le paiement : " + error.message);
+  if(checkoutBtn){
+   checkoutBtn.disabled = false;
+   checkoutBtn.innerText = "Payer le panier";
+  }
  }
 }
 </script>
