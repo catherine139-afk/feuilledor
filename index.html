@@ -592,15 +592,16 @@ footer a{
 }
 .brand-topline{
  font-family:"Raleway", Arial, sans-serif;
- font-weight:100;
- text-transform:uppercase;
- letter-spacing:clamp(8px,1.9vw,120px);
- font-size:clamp(10px,1.2vw,16px);
- line-height:1.5;
- white-space:nowrap;
- transform:translateX(clamp(4px,.8vw,20px));
- color:#000;
  font-weight:300;
+ text-transform:uppercase;
+ letter-spacing:clamp(2px,.45vw,7px);
+ font-size:clamp(12px,1.05vw,16px);
+ line-height:1.55;
+ white-space:normal;
+ max-width:760px;
+ margin:0 auto;
+ transform:none;
+ color:#000;
 }
 .brand-name{
  font-family:"Cinzel", Georgia, serif;
@@ -652,11 +653,12 @@ footer a{
  font-style:italic;
  font-weight:400;
  text-transform:uppercase;
- letter-spacing:clamp(8px,1.9vw,120px);
- font-size:clamp(10px,1.2vw,16px);
- line-height:1.8;
+ letter-spacing:clamp(1.5px,.35vw,5px);
+ font-size:clamp(13px,1.15vw,17px);
+ line-height:1.65;
  color:#000;
- margin-top:12px;
+ margin:12px auto 0;
+ max-width:760px;
 }
 @media(max-width:1024px){
  .brand-signature{
@@ -676,7 +678,7 @@ footer a{
  }
  .brand-topline{
  white-space:normal;
- letter-spacing:6px;
+ letter-spacing:2.5px;
  font-size:12px;
  }
  .brand-name{
@@ -693,14 +695,14 @@ footer a{
  font-size:clamp(38px,8vw,58px);
  }
  .brand-bottomline{
- font-size:clamp(15px,3.5vw,22px);
- letter-spacing:3px;
+ font-size:clamp(13px,3.2vw,17px);
+ letter-spacing:1.8px;
  }
 }
 @media(max-width:480px){
  .brand-topline{
  font-size:10px;
- letter-spacing:4px;
+ letter-spacing:1.8px;
  }
  .brand-name{
  font-size:40px;
@@ -713,8 +715,8 @@ footer a{
  font-size:38px;
  }
  .brand-bottomline{
- font-size:14px;
- letter-spacing:2px;
+ font-size:13px;
+ letter-spacing:1px;
  line-height:1.55;
  }
 }
@@ -1644,7 +1646,7 @@ updatePanierCount();
 
 async function loadProducts(){
  try{
-  const response = await fetch('products.json?v=29', {cache:'no-store'});
+  const response = await fetch('products.json?v=30', {cache:'no-store'});
   if(!response.ok) throw new Error('products.json not found');
   products = await response.json();
  }catch(error){
