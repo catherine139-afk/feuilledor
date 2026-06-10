@@ -1097,6 +1097,92 @@ border-radius:18px;
  }
 }
 
+
+
+/* ===== STRIPE TRUST / LEGAL PAGES ===== */
+.legal-page{
+ max-width:980px;
+ line-height:1.75;
+ color:#4b4b4b;
+}
+.legal-page h1{
+ margin:0 0 28px;
+ font-family:Georgia,"Times New Roman",serif;
+ font-size:clamp(34px,4vw,54px);
+ font-weight:400;
+ color:#111;
+ letter-spacing:.5px;
+}
+.legal-page h2{
+ margin:34px 0 12px;
+ font-size:22px;
+ color:#111;
+}
+.legal-page p{
+ margin:0 0 16px;
+}
+.legal-page ul{
+ margin:0 0 22px 20px;
+ padding:0;
+}
+.legal-card{
+ border:1px solid #eee;
+ border-radius:20px;
+ padding:clamp(22px,4vw,42px);
+ background:#fff;
+ box-shadow:0 18px 44px rgba(0,0,0,.04);
+}
+.legal-muted{
+ color:#777;
+ font-size:14px;
+}
+footer.site-footer{
+ display:block;
+}
+.footer-trust{
+ width:100%;
+ display:grid;
+ grid-template-columns:1.2fr 1fr;
+ gap:28px;
+ align-items:start;
+}
+.footer-brand h3,
+.footer-links h3{
+ margin:0 0 12px;
+ font-family:Georgia,"Times New Roman",serif;
+ font-size:22px;
+ font-weight:400;
+ color:#111;
+}
+.footer-brand p{
+ margin:0 0 8px;
+ line-height:1.7;
+ color:#666;
+}
+.footer-link-grid{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:10px 22px;
+}
+.footer-bottom-note{
+ width:100%;
+ margin-top:28px;
+ padding-top:22px;
+ border-top:1px solid #eee;
+ color:#888;
+ line-height:1.8;
+ font-size:12px;
+}
+@media(max-width:768px){
+ .footer-trust{
+  grid-template-columns:1fr;
+  text-align:center;
+ }
+ .footer-link-grid{
+  grid-template-columns:1fr;
+ }
+}
+
 </style>
 </head>
 <body>
@@ -1275,13 +1361,105 @@ border-radius:18px;
  </iframe>
  </div>
  </section>
+
+
+ <section id="mentions-legales" class="page legal-page">
+  <div class="legal-card">
+   <h1>Mentions légales</h1>
+   <p><strong>Nom commercial :</strong> Feuille d'Or</p>
+   <p><strong>Statut juridique :</strong> Entreprise Individuelle (EI)</p>
+   <p><strong>Adresse professionnelle :</strong><br>
+   59 Avenue Maréchal Foch<br>
+   69006 Lyon<br>
+   France</p>
+   <p><strong>Email :</strong><br>
+   <a href="mailto:david139.doublet@gmail.com">david139.doublet@gmail.com</a></p>
+   <p><strong>Activité :</strong><br>
+   Vente en ligne de press-on nails artisanaux et accessoires associés.</p>
+   <p><strong>Hébergement :</strong><br>
+   Vercel Inc.</p>
+   <p class="legal-muted">Ces informations permettent aux clients d'identifier clairement le vendeur et de contacter le service client avant ou après une commande.</p>
+  </div>
+ </section>
+
+ <section id="cgv" class="page legal-page">
+  <div class="legal-card">
+   <h1>Conditions Générales de Vente</h1>
+   <p>Les produits proposés sur Feuille d'Or sont des press-on nails artisanaux conçus pour un usage esthétique personnel.</p>
+   <p>Les prix sont indiqués en euros TTC, hors éventuels frais de livraison indiqués avant la validation de la commande.</p>
+   <p>La commande est considérée comme définitive après validation du paiement.</p>
+   <p>Les paiements sont traités de manière sécurisée via Stripe. Feuille d'Or ne conserve pas les données complètes de carte bancaire.</p>
+   <p>Les photographies présentées sur le site sont fournies à titre indicatif. De légères variations peuvent exister selon la lumière, l'écran ou le caractère artisanal du produit.</p>
+   <p>Feuille d'Or se réserve le droit de refuser ou d'annuler toute commande en cas d'erreur manifeste, d'indisponibilité du produit, de suspicion de fraude ou d'informations de livraison incomplètes.</p>
+   <h2>Service client</h2>
+   <p>Pour toute question avant ou après commande : <a href="mailto:david139.doublet@gmail.com">david139.doublet@gmail.com</a></p>
+  </div>
+ </section>
+
+ <section id="confidentialite" class="page legal-page">
+  <div class="legal-card">
+   <h1>Politique de confidentialité</h1>
+   <p>Les informations collectées lors d'une commande ou d'une demande client sont utilisées uniquement pour les finalités suivantes :</p>
+   <ul>
+    <li>traiter les commandes ;</li>
+    <li>organiser l'expédition ;</li>
+    <li>assurer le service client ;</li>
+    <li>respecter les obligations légales et comptables.</li>
+   </ul>
+   <p>Aucune donnée personnelle n'est vendue ou transmise à des tiers à des fins commerciales.</p>
+   <p>Les paiements sont sécurisés et traités via Stripe. Les informations de paiement sont gérées par le prestataire de paiement sécurisé.</p>
+   <p>Conformément au RGPD, chaque client peut demander l'accès, la rectification ou la suppression de ses données personnelles.</p>
+   <p>Contact pour toute demande relative aux données personnelles : <a href="mailto:david139.doublet@gmail.com">david139.doublet@gmail.com</a></p>
+  </div>
+ </section>
+
+ <section id="retours" class="page legal-page">
+  <div class="legal-card">
+   <h1>Livraison, retours & remboursements</h1>
+   <h2>Livraison</h2>
+   <ul>
+    <li>Préparation de commande : 1 à 3 jours ouvrés.</li>
+    <li>Livraison France : 2 à 5 jours ouvrés après expédition.</li>
+    <li>Livraison Union Européenne : 3 à 10 jours ouvrés après expédition.</li>
+   </ul>
+   <p>Les délais peuvent varier selon le transporteur, la destination ou les périodes de forte activité.</p>
+   <h2>Produits standards</h2>
+   <p>Les produits standards peuvent être retournés dans un délai de 14 jours après réception, à condition qu'ils soient non utilisés, en parfait état et conservés dans leur emballage d'origine.</p>
+   <h2>Produits personnalisés</h2>
+   <p>Les produits réalisés sur mesure ou personnalisés ne sont ni repris ni remboursés, sauf erreur de fabrication ou défaut constaté à la réception.</p>
+   <h2>Remboursements</h2>
+   <p>Les remboursements validés sont effectués sur le moyen de paiement utilisé lors de la commande. Le délai moyen d'apparition du remboursement est de 5 à 10 jours ouvrés selon la banque ou le prestataire de paiement.</p>
+   <p>Pour toute demande de retour ou de remboursement : <a href="mailto:david139.doublet@gmail.com">david139.doublet@gmail.com</a></p>
+  </div>
+ </section>
+
 </main>
-<footer>
- <span onclick="go('shop')">Boutique</span>
- <span onclick="go('giftcard')">Paniere cadeau</span>
- <span onclick="go('partner')">Partner</span>
- <a href="https://instagram.com/YOUR" target="_blank">Instagram</a>
- <a href="https://tiktok.com/@YOUR" target="_blank">TikTok</a>
+<footer class="site-footer">
+ <div class="footer-trust">
+  <div class="footer-brand">
+   <h3>Feuille d'Or</h3>
+   <p>Press-on nails artisanaux conçus à Lyon.</p>
+   <p>📧 <a href="mailto:david139.doublet@gmail.com">david139.doublet@gmail.com</a></p>
+   <p>📍 59 Avenue Maréchal Foch, 69006 Lyon, France</p>
+   <p>Paiement sécurisé via Stripe.</p>
+  </div>
+  <div class="footer-links">
+   <h3>Liens utiles</h3>
+   <div class="footer-link-grid">
+    <a onclick="go('mentions-legales')">Mentions légales</a>
+    <a onclick="go('cgv')">CGV</a>
+    <a onclick="go('confidentialite')">Confidentialité</a>
+    <a onclick="go('retours')">Retours & remboursements</a>
+    <a onclick="go('shop')">Boutique</a>
+    <a onclick="go('partner')">Partenaires</a>
+   </div>
+  </div>
+ </div>
+ <div class="footer-bottom-note">
+  Feuille d'Or · Lyon, France<br>
+  Livraison France & Union Européenne · Paiement sécurisé Stripe<br>
+  Contact : <a href="mailto:david139.doublet@gmail.com">david139.doublet@gmail.com</a>
+ </div>
 </footer>
 <a class="whatsapp" href="https://wa.me/33600000000" target="_blank" aria-label="WhatsApp">☘</a>
 <div class="mobile-buy-bar" id="mobileBuyBar">
@@ -1467,7 +1645,7 @@ updatePanierCount();
 
 async function loadProducts(){
  try{
-  const response = await fetch('products.json?v=27', {cache:'no-store'});
+  const response = await fetch('products.json?v=26', {cache:'no-store'});
   if(!response.ok) throw new Error('products.json not found');
   products = await response.json();
  }catch(error){
