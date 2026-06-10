@@ -727,12 +727,15 @@ footer a{
  margin-bottom:0;
  overflow:hidden;
  background:#fbf3ee;
+ display:flex;
+ justify-content:center;
 }
 .chic-naturel-full-hero img{
  width:100%;
+ max-width:1280px;
  height:auto;
  display:block;
- margin:0;
+ margin:0 auto;
  border:0;
  border-radius:0;
 }
@@ -1641,7 +1644,7 @@ updatePanierCount();
 
 async function loadProducts(){
  try{
-  const response = await fetch('products.json?v=28', {cache:'no-store'});
+  const response = await fetch('products.json?v=29', {cache:'no-store'});
   if(!response.ok) throw new Error('products.json not found');
   products = await response.json();
  }catch(error){
