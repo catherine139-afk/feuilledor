@@ -1140,6 +1140,7 @@ footer.site-footer{
  display:block;
 }
 .footer-trust{
+ font-size:80%;
  width:100%;
  display:grid;
  grid-template-columns:1.2fr 1fr;
@@ -1455,11 +1456,6 @@ footer.site-footer{
    </div>
   </div>
  </div>
- <div class="footer-bottom-note">
-  Feuille d'Or · Lyon, France<br>
-  Livraison France & Union Européenne · Paiement sécurisé Stripe<br>
-  Contact : <a href="mailto:david139.doublet@gmail.com">david139.doublet@gmail.com</a>
- </div>
 </footer>
 <a class="whatsapp" href="https://wa.me/33600000000" target="_blank" aria-label="WhatsApp">☘</a>
 <div class="mobile-buy-bar" id="mobileBuyBar">
@@ -1645,7 +1641,7 @@ updatePanierCount();
 
 async function loadProducts(){
  try{
-  const response = await fetch('products.json?v=26', {cache:'no-store'});
+  const response = await fetch('products.json?v=28', {cache:'no-store'});
   if(!response.ok) throw new Error('products.json not found');
   products = await response.json();
  }catch(error){
